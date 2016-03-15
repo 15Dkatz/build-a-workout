@@ -92,6 +92,7 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
         } else {
             $scope.pauseBtn['name']='pause';
             $scope.pauseBtn['ionname'] = 'ion-pause';
+            $scope.startExercise();
         }
 
     }
