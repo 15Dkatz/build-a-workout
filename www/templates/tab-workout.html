@@ -1,5 +1,5 @@
 <ion-view view-title="Workout">
-  <ion-content>
+  <ion-content class="">
     <div class="card">
       <!-- titleDiv -->
       {{currentExercise.exercise}}
@@ -8,10 +8,23 @@
       <br>
       <!-- circularProgressBar -->
       {{currentExercise.time}}
+
+      <progress max="{{currentExercise.time}}" value="{{currentExerciseProgress}}"> </progress>
       <!-- !circularProgressBar -->
     </div>
 
-    <button class="button" ng-click="data.showReordering = !data.showReordering">Reorder</button>
+    <div class="row">
+      <div class="col col-33">
+        <button class="button" ng-click="startExercise()">Start</button>
+      </div>
+      <div class="col col-33">
+        <button class="button" ng-click="pauseExercise()">Pause</button>
+      </div>
+      <div class="col col-33">
+        <button class="button" ng-click="data.showReordering = !data.showReordering">Reorder</button>
+      </div>
+    </div>
+    
     <ion-list class="list list-inset" show-reorder="data.showReordering">
       <ion-item class="item item-divider">
         Exercises
