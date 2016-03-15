@@ -1,27 +1,33 @@
 <ion-view view-title="Workout">
   <ion-content class="">
-    <div class="card">
+    <div class="">
       <!-- titleDiv -->
-      {{currentExercise.exercise}}
+      <div class="bar bar-dark">
+        <h1 class="title">{{currentExercise.exercise}}</h1>
+      </div>
+      
       <!-- /titleDiv -->
       <!-- breakline figure out better structure more ionic-y -->
       <br>
       <!-- circularProgressBar -->
       {{currentExercise.time}}
 
-      <progress max="{{currentExercise.time}}" value="{{currentExerciseProgress}}"> </progress>
+      <!-- <progress max="{{currentExercise.time}}" value="{{currentExerciseProgress}}"> </progress> -->
+      <div class="row">
+        <div id="progressBarCircle" class="col col-33 col-offset-33"></div>
+      </div>
       <!-- !circularProgressBar -->
     </div>
 
-    <div class="row">
+    <div class="row topButtons">
       <div class="col col-33">
-        <button class="button" ng-click="startExercise()">Start</button>
+        <button class="button button-block 33 icon-right ion-play topButtons" ng-click="startExercise()">Start</button>
       </div>
       <div class="col col-33">
-        <button class="button" ng-click="pauseExercise()">Pause</button>
+        <button class="button button-block icon-right topButtons {{pauseBtn.ionname}}" ng-click="pauseExercise()">{{pauseBtn.name}}</button>
       </div>
       <div class="col col-33">
-        <button class="button" ng-click="data.showReordering = !data.showReordering">Reorder</button>
+        <button class="button button-block icon-right ion-navicon-round topButtons" ng-click="data.showReordering = !data.showReordering">Reorder</button>
       </div>
     </div>
     

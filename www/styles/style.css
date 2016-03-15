@@ -3,3 +3,16 @@
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
 }
+
+.progressBarContainer {
+	/*width: 50%;*/
+	font-size: 100%;
+}
+
+.progressbar-text{
+	font-size: 2.4rem;
+}
+
+.topButtons {
+	font-weight: bold;
+}

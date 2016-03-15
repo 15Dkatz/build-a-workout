@@ -7,10 +7,14 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
 
     var exerciseTimeLimit;
 
+
+
     $scope.updateExerciseList = function() {
         exerciseList = sharedExercises.getExerciseList();
-        $scope.currentExercise = exerciseList[0];
-        exerciseTimeLimit = $scope.currentExercise["time"];
+        if (exerciseList.length>0) {
+            $scope.currentExercise = exerciseList[0];
+            exerciseTimeLimit = $scope.currentExercise["time"];
+        }
         $scope.exerciseList = exerciseList;
         return exerciseList;
     }
@@ -25,51 +29,74 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
         $scope.exerciseList.splice(toIndex, 0, item)
     }
 
+    // change color here later!
+    var progressBarCircle = new ProgressBar.Circle("#progressBarCircle", {
+        color: '#ef473a',
+        strokeWidth: 3
+        // fill: '#aaa',
+        // font_size: 3rem;
+    })
+
     $scope.currentExerciseProgress = 0;
     var timer;
     var exTime = 0;
 
     var addTime = function() {
-        exTime+=.1;
+        exTime+=1;
         console.log("exTime", exTime)
         $scope.$apply(function() {
             $scope.currentExerciseProgress = exTime;
         });
+
         if (exTime>exerciseTimeLimit) {
             removeCurrentTask($scope.currentExercise);
             exTime=0;
         }
+
+        progressBarCircle.animate(exTime/exerciseTimeLimit, function() {
+            progressBarCircle.setText(exTime);
+        });
+
     }
+
+
+
 
     var removeCurrentTask = function(task) {
         $scope.exerciseList.shift();
 
         console.log($scope.exerciseList);
 
-        // sharedExercises.setExerciseList($scope.getExerciseList);
+        sharedExercises.setExerciseList($scope.exerciseList);
 
         exerciseList = $scope.exerciseList;
         // $scope.updateExerciseList();
     }
 
     $scope.startExercise = function() {
-        timer = setInterval(addTime, 100);
-
-        // console.log(exerciseTimeLimit, "exerciseTimeLimit");
-        // if the timer exceeds maxTime, delete the current task, and restart exTime
+        timer = setInterval(addTime, 1000);
 
 
+    }
 
-
+    $scope.pauseBtn = {
+        'name': 'pause',
+        'ionname': 'ion-pause'
     }
 
     $scope.pauseExercise = function() {
         clearInterval(timer);
+        if ($scope.pauseBtn['name']=='pause') {
+            $scope.pauseBtn['name']='resume';
+            $scope.pauseBtn['ionname'] = 'ion-play';
+        } else {
+            $scope.pauseBtn['name']='pause';
+            $scope.pauseBtn['ionname'] = 'ion-pause';
+        }
+
     }
 
-    // $scope.testEL = function() {
-    //     // $scope.exerciseList = sharedExercises.getExerciseList();
-    //     console.log($scope.exerciseList[0]);
-    // }
+        
+
 
 }]); // Controller
