@@ -21,7 +21,8 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
 
 
     $scope.data = {
-        showReordering: false
+        showReordering: false,
+        shouldShowDelete: false
     }
 
     $scope.reorderItem = function(item, fromIndex, toIndex) {
@@ -57,6 +58,11 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
             progressBarCircle.setText(exTime);
         });
 
+    }
+
+    $scope.removeExercise = function(index) {
+        $scope.exerciseList.splice(index, 1);
+        sharedExercises.setExerciseList($scope.exerciseList);
     }
 
 
@@ -101,3 +107,4 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
 
 
 }]); // Controller
+

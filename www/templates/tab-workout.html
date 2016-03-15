@@ -20,27 +20,41 @@
     </div>
 
     <div class="row topButtons">
-      <div class="col col-33">
-        <button class="button button-block 33 icon-right ion-play topButtons" ng-click="startExercise()">Start</button>
+      <div class="col col-50">
+        <button class="button button-block icon-right ion-play topButtons" ng-click="startExercise()">Start</button>
       </div>
-      <div class="col col-33">
+      <div class="col col-50">
         <button class="button button-block icon-right topButtons {{pauseBtn.ionname}}" ng-click="pauseExercise()">{{pauseBtn.name}}</button>
       </div>
-      <div class="col col-33">
-        <button class="button button-block icon-right ion-navicon-round topButtons" ng-click="data.showReordering = !data.showReordering">Reorder</button>
-      </div>
+
+      
+
+      <!-- ion-list show-delete="shouldShowDelete">
+  <ion-item>
+    <ion-delete-button class="ion-minus-circled"></ion-delete-button>
+    Hello, list item!
+  </ion-item>
+</ion-list>
+<ion-toggle ng-model="shouldShowDelete">
+  Show Delete?
+</ion-toggle> -->
+
     </div>
     
-    <ion-list class="list list-inset" show-reorder="data.showReordering">
-      <ion-item class="item item-divider">
-        Exercises
-      </ion-item>
+    <div class="bar bar-dark subheader">
+      <button class="button button-clear icon-left ion-minus-circled" ng-click="data.shouldShowDelete = !data.shouldShowDelete"></button>
+        <h1 class="title">Exercises</h1>
+        <button class="button button-clear icon-right" ng-click="data.showReordering = !data.showReordering">Reorder</button>
+    </div>
+    <ion-list class="list" show-reorder="data.showReordering" show-delete="data.shouldShowDelete">
+      
 
       <ion-item ng-repeat="exercise in updateExerciseList() track by $index" class="item">
        {{exercise.exercise}}
        {{exercise.time}} seconds
 
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(exercise, $fromIndex, $toIndex)"></ion-reorder-button>
+        <ion-delete-button class="ion-minus-circled" ng-click="removeExercise($index)"></ion-delete-button>
       </ion-item>
     </ion-list>
   </ion-content>
