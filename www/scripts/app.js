@@ -94,4 +94,5 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 // Put login and register in account, unless logged in, show account
 // update workout.js
 // add more exercises
+// change to black-and-orange, giants color-way theme for more intensity
 // 
