@@ -18,6 +18,20 @@ myApp.run(function($ionicPlatform) {
   });
 })
 
+myApp.service('sharedExercises', function() {
+  var exerciseList = [];
+
+  return {
+    getExerciseList: function() {
+      return exerciseList;
+    },
+    setExerciseList: function(newList) {
+      exerciseList = newList;
+    }
+  }
+})
+
+
 myApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -32,7 +46,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'tab-build': {
         templateUrl: 'templates/tab-build.html',
-        controller: 'BuildCtrl'
+        controller: 'BuildController'
       }
     }
   })
@@ -42,7 +56,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'tab-workout': {
           templateUrl: 'templates/tab-workout.html',
-          controller: 'WorkoutCtrl'
+          controller: 'WorkoutController'
         }
       }
     })
@@ -72,3 +86,12 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/tab/workout');
 
 });
+
+// show error message if incorrect combination of password and username
+
+
+// Todo:
+// Put login and register in account, unless logged in, show account
+// update workout.js
+// add more exercises
+// 
