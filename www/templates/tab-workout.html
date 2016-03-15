@@ -1,15 +1,32 @@
 <ion-view view-title="Workout">
   <ion-content>
-    <!-- <button ng-click="testEL()">testEl</button> -->
-    <ion-list>
-      <!-- {{updateExerciseList()}} -->
-      <ul>
-        <li ng-repeat="exercise in updateExerciseList()">
-         {{exercise.exercise}} | {{exercise.time}}
-        </li>
-      </ul>
-    </ion-list>  
+    <div class="card">
+      <!-- titleDiv -->
+      {{currentExercise.exercise}}
+      <!-- /titleDiv -->
+      <!-- breakline figure out better structure more ionic-y -->
+      <br>
+      <!-- circularProgressBar -->
+      {{currentExercise.time}}
+      <!-- !circularProgressBar -->
+    </div>
+
+    <button class="button" ng-click="data.showReordering = !data.showReordering">Reorder</button>
+    <ion-list class="list list-inset" show-reorder="data.showReordering">
+      <ion-item class="item item-divider">
+        Exercises
+      </ion-item>
+
+      <ion-item ng-repeat="exercise in updateExerciseList() track by $index" class="item">
+       {{exercise.exercise}}
+       {{exercise.time}} seconds
+
+        <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(exercise, $fromIndex, $toIndex)"></ion-reorder-button>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
 
 <!-- store in firebase -->
+
+<!-- add list-avatar pictures for each exercise later -->

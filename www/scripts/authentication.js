@@ -1,8 +1,8 @@
 myApp.factory('Authentication',
   ['$rootScope', '$firebaseAuth', '$firebaseObject',
-  '$location', 'FIREBASE_URL',
+  '$location', '$window', 'FIREBASE_URL',
   function($rootScope, $firebaseAuth, $firebaseObject,
-    $location, FIREBASE_URL) {
+    $location, $window, FIREBASE_URL) {
 
   var ref = new Firebase(FIREBASE_URL);
   var auth = $firebaseAuth(ref);
@@ -24,10 +24,11 @@ myApp.factory('Authentication',
         email: user.email,
         password: user.password
       }).then(function(regUser) {
-        $location.path('/#/workout');
+        $window.location.href = '#/tab/build';
       }).catch(function(error) {
        $rootScope.message = error.message;
       });
+      // $location.path('#/build')
     }, //login
 
     logout: function() {

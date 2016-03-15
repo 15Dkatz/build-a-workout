@@ -83,7 +83,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     controller: 'RegistrationController'
   })
 
-  $urlRouterProvider.otherwise('/tab/workout');
+  $urlRouterProvider.otherwise('/login');
 
 });
 

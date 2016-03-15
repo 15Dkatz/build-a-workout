@@ -1,5 +1,5 @@
-myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', 'sharedExercises',
-  function($scope, $rootScope, Authentication, sharedExercises) {
+myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', 'sharedExercises', '$window',
+  function($scope, $rootScope, Authentication, sharedExercises, $window) {
     
     $scope.numOfExercises = 10;
     $scope.timeForExercises = 60;
@@ -14,7 +14,7 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
     var randomExercises = ['crunches', 'flutter kicks', 'pushups', 'plank', 'diamond pushups', 'jumping jacks', 'wall sits', 'lunges', 'leg raises', 'crunch twists'];
 
     $scope.build = function(numOfExercises, timeForExercises) {
-    	console.log(numOfExercises, timeForExercises, "numOfE, timeForE");
+    	// console.log(numOfExercises, timeForExercises, "numOfE, timeForE");
     	// build an array that workout.js can use to construct a list of exercises
     	// pick from random set of exercises
 
@@ -34,11 +34,13 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
     		exerciseList.push(exercise);
     	}
 
-    	console.log(exerciseList[0], "in build.js");
-
-    	// $rootScope.$broadcast('sendExerciseList', exerciseList);
     	sharedExercises.setExerciseList(exerciseList);
-
+    	// .then(function(regUser) {
+    	// $scope.$apply({
+    		// $location.path('#/tab/workout');	
+    		$window.location.href = '#/tab/workout';
+    	// })
+        
     }
 
 
