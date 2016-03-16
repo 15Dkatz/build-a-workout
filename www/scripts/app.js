@@ -18,18 +18,40 @@ myApp.run(function($ionicPlatform) {
   });
 })
 
-myApp.service('sharedExercises', function() {
+myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth', function(FIREBASE_URL, $rootScope, $firebaseAuth) {
   var exerciseList = [];
+  var ref = new Firebase(FIREBASE_URL);
+  var auth = $firebaseAuth(ref);
+  var exerciseListRef;
+  auth.$onAuth(function(authUser) {
+      if (authUser) {
+        exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
+        if (exerciseListRef) {
+          exerciseListRef.once("value", function(snapshot) {
+              if (snapshot.exists()) {
+                  exerciseList = snapshot.val()["exerciseList"];
+                  console.log("exerciseList:", $scope.exerciseList);
+              }
+          }, function(errorObject) {
+              console.log("The read failed: ", errorObject.code);
+          });
+        }
+      }
+  })
 
   return {
     getExerciseList: function() {
+      
       return exerciseList;
     },
     setExerciseList: function(newList) {
       exerciseList = newList;
+      
+        // $scope.$apply(function() {
+      exerciseListRef.update({"exerciseList": newList});
     }
   }
-})
+}])
 
 
 myApp.config(function($stateProvider, $urlRouterProvider) {

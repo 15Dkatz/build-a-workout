@@ -49,7 +49,9 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
     		exerciseList.push(exercise);
     	}
 
-    	sharedExercises.setExerciseList(exerciseList);
+        var combinedExerciseList = exerciseList.concat(sharedExercises.getExerciseList());
+
+    	sharedExercises.setExerciseList(combinedExerciseList);
 		$window.location.href = '#/tab/workout';
     }
 

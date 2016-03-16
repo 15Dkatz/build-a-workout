@@ -1,6 +1,5 @@
 myApp.factory('Authentication',
-  ['$rootScope', '$firebaseAuth', '$firebaseObject',
-  '$location', '$window', 'FIREBASE_URL',
+  ['$rootScope', '$firebaseAuth', '$firebaseObject', '$location', '$window', 'FIREBASE_URL',
   function($rootScope, $firebaseAuth, $firebaseObject,
     $location, $window, FIREBASE_URL) {
 

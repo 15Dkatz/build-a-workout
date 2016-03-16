@@ -1,5 +1,8 @@
-myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication', 'sharedExercises', '$ionicPopup', '$timeout',
-  function($scope, $rootScope, Authentication, sharedExercises, $ionicPopup, $timeout) {
+myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication', 'sharedExercises', '$ionicPopup', '$timeout', '$firebaseAuth', 'FIREBASE_URL',
+  function($scope, $rootScope, Authentication, sharedExercises, $ionicPopup, $timeout, $firebaseAuth, FIREBASE_URL) {
+    var ref = new Firebase(FIREBASE_URL);
+    var auth = $firebaseAuth(ref);
+
 
     var exerciseList;
     var exerciseTimeLimit;
@@ -7,15 +10,22 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
     $scope.currentExercise;
     $scope.exerciseList;
 
+    $scope.initExList = function() {
+        exerciseList = sharedExercises.getExerciseList();
+    }
+
     $scope.updateExerciseList = function() {
         exerciseList = sharedExercises.getExerciseList();
-        if (exerciseList.length>0) {
-            $scope.currentExercise = exerciseList[0];
-            exerciseTimeLimit = $scope.currentExercise["time"];
-            // console.log("exerciseTimeLimit:", exerciseTimeLimit);
+        if (exerciseList) {
+            if (exerciseList.length>0) {
+                $scope.currentExercise = exerciseList[0];
+                exerciseTimeLimit = $scope.currentExercise["time"];
+                // console.log("exerciseTimeLimit:", exerciseTimeLimit);
+            }
         }
         // timer = false;
         $scope.exerciseList = exerciseList;
+        // updateExerciseVariables();
         return exerciseList;
     }
 
@@ -24,9 +34,30 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
         $scope.currentExercise = $scope.exerciseList[0];
 
         // update firebase
-        var exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
+        // var exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
+        // // $scope.$apply(function() {
+        // exerciseListRef.update({"exerciseList": $scope.exerciseList});
+        // })
     }
 
+    auth.$onAuth(function(authUser) {
+        if (authUser) {
+    //         var exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
+    //         exerciseListRef.once("value", function(snapshot) {
+    //             if (snapshot.exists()) {
+    //                 // $scope.exerciseList = snapshot.val()["exerciseList"];
+    //                 // sharedExercises.setExerciseList($scope.setExerciseList);
+    //                 // updateExerciseVariables();
+    //                 console.log("exerciseList:", $scope.exerciseList);
+    //             }
+    //         }, function(errorObject) {
+    //             console.log("The read failed: ", errorObject.code);
+    //         });
+
+            exerciseList = sharedExercises.getExerciseList();
+            console.log("exerciseList from authUser", exerciseList); 
+        }
+    })
 
     $scope.data = {
         showReordering: false,
@@ -49,7 +80,7 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
     $scope.editExercise = function(index) {
         $scope.newExercise = {};
         var myPopup = $ionicPopup.show({
-        template: "<input class='inputIndent' placeholder='&nbsp;&nbsp;Name' type='text' ng-model='newExercise.exercise'><br><input type='number' class='inputIndent' placeholder='&nbsp;&nbsp;Time' ng-model='newExercise.time'>",
+        template: "<input class='inputIndent' placeholder='Name' type='text' ng-model='newExercise.exercise'><br><input type='number' class='inputIndent' placeholder='Time' ng-model='newExercise.time'>",
         title: 'Edit Exercise',
         scope: $scope,
         buttons: [
@@ -153,7 +184,7 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
         $scope.newExercise = {};
         // update shared properties
         var myPopup = $ionicPopup.show({
-        template: "<input class='inputIndent' placeholder='Name' type='text' ng-model='newExercise.exercise'><br><input type='number' class='inputIndent' placeholder='Time' ng-model='newExercise.time'>",
+        template: "<input class='inputIndent' placeholder='Name' type='text' ng-model='newExercise.exercise'><br><input type='number' class='inputIndent' placeholder='Time in seconds' ng-model='newExercise.time'>",
         title: 'New Exercise',
         scope: $scope,
         buttons: [
