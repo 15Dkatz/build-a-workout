@@ -97,3 +97,5 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 // change to black-and-orange, giants color-way theme for more intensity
 // add exercises to firebase for each user.
 // extend exercises, add themes: abs, chest, arms, etc.
+
+// add exercises to firebase

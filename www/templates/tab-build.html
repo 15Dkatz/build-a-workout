@@ -17,8 +17,9 @@
         	<input type="range" string-to-number min="0" max="100" ng-model="timeForExercises"/>
         	<span class="input-label">{{timeForExercises}} seconds</span>
         </label>
-
-        <button class="button button-block" ng-disabled="myform.$invalid" ng-click="build(numOfExercises, timeForExercises)">Build</button>
+        <div class="item">
+	        <button class="button button-block" ng-disabled="myform.$invalid" ng-click="build(numOfExercises, timeForExercises)">Build</button>
+        </div>
     </div>
   </ion-content>
 </ion-view>

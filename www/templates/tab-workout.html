@@ -28,8 +28,10 @@
         <h1 class="title">Exercises</h1>
         <button class="button button-clear icon-right" ng-click="data.showReordering = !data.showReordering">Reorder</button>
     </div>
-    <ion-list class="list" show-reorder="data.showReordering" show-delete="data.shouldShowDelete">
-      
+    <ion-list class="list" show-reorder="data.showReordering" show-delete="data.shouldShowDelete" can-swipe="data.canSwipe">
+      <br>
+      <br>
+      <!-- <br> -->
 
       <ion-item ng-repeat="exercise in updateExerciseList() track by $index" class="item icon-left">
        {{exercise.exercise}}
@@ -37,6 +39,9 @@
         <span class="item-note">{{exercise.time}} seconds</span>
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(exercise, $fromIndex, $toIndex)"></ion-reorder-button>
         <ion-delete-button class="ion-minus-circled" ng-click="removeExercise($index)"></ion-delete-button>
+        <ion-option-button class="button-assertive" ng-click="editExercise($index)">
+          Edit
+        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
