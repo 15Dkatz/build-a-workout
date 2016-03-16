@@ -4,19 +4,14 @@
       <!-- titleDiv -->
       <div class="bar bar-dark">
         <h1 class="title">{{currentExercise.exercise}}</h1>
-      </div>
-      
-      <!-- /titleDiv -->
-      <!-- breakline figure out better structure more ionic-y -->
-      <br>
-      <!-- circularProgressBar -->
+      </div> 
       {{currentExercise.time}}
-
-      <!-- <progress max="{{currentExercise.time}}" value="{{currentExerciseProgress}}"> </progress> -->
+      <br>
+      <br>
+      <br> 
       <div class="row">
         <div id="progressBarCircle" class="col col-33 col-offset-33"></div>
       </div>
-      <!-- !circularProgressBar -->
     </div>
 
     <div class="row topButtons">
@@ -26,19 +21,6 @@
       <div class="col col-50">
         <button class="button button-block icon-right topButtons {{pauseBtn.ionname}}" ng-click="pauseExercise()">{{pauseBtn.name}}</button>
       </div>
-
-      
-
-      <!-- ion-list show-delete="shouldShowDelete">
-  <ion-item>
-    <ion-delete-button class="ion-minus-circled"></ion-delete-button>
-    Hello, list item!
-  </ion-item>
-</ion-list>
-<ion-toggle ng-model="shouldShowDelete">
-  Show Delete?
-</ion-toggle> -->
-
     </div>
     
     <div class="bar bar-dark subheader">
@@ -49,10 +31,10 @@
     <ion-list class="list" show-reorder="data.showReordering" show-delete="data.shouldShowDelete">
       
 
-      <ion-item ng-repeat="exercise in updateExerciseList() track by $index" class="item">
+      <ion-item ng-repeat="exercise in updateExerciseList() track by $index" class="item icon-left">
        {{exercise.exercise}}
-       {{exercise.time}} seconds
-
+       
+        <span class="item-note">{{exercise.time}} seconds</span>
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(exercise, $fromIndex, $toIndex)"></ion-reorder-button>
         <ion-delete-button class="ion-minus-circled" ng-click="removeExercise($index)"></ion-delete-button>
       </ion-item>

@@ -11,7 +11,7 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
 
     // crunches, flutter kicks, pushups, plank, diamond pushups, jumping jacks, wall sits, lunges
 
-    var randomExercises = ['Crunches', 'Flutter Kicks', 'Pushups', 'Plank', 'Diamond Pushups', 'Jumping Jacks', 'Wall Sits', 'Lunges', 'Leg Raises', 'Crunch Twists'];
+    var randomExercises = ['Crunches', 'Flutter Kicks', 'Pushups', 'Plank', 'Diamond Pushups', 'Jumping Jacks', 'Wall Sits', 'Lunges', 'Leg Raises', 'Crunch Twists', 'Side Plank', 'Side Lunges', 'Tuck Jumps', 'Burpees', 'Squats', 'Calf Raises', 'Bicycle', 'Crunches'];
 
     $scope.build = function(numOfExercises, timeForExercises) {
     	// console.log(numOfExercises, timeForExercises, "numOfE, timeForE");

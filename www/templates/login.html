@@ -3,30 +3,30 @@
 
 <ion-view view-title="Login">
   <ion-content>
-    <section class="card">
-    <form name="myform"
-      novalidate>
-
+    <form name="myform" novalidate>
       <fieldset>
-        <input type="email" name="email" placeholder="Email"
-         ng-model="user.email" ng-required="true">
-        <p class=""
-        ng-show="myform.email.$invalid && myform.email.$touched">
-        Must be a valid email</p>
-
-
-        <input type="password" name="password" placeholder="Password"
-        ng-model="user.password" ng-required="true">
-        <p class=""
-        ng-show="myform.password.$invalid && myform.email.$touched">
-        Password is required</p>
-
+        <div class="list">
+          <label class="item item-input item-floating-label">
+            <input type="email" name="email" placeholder="Email"
+             ng-model="user.email" ng-required="true">
+            <p class=""
+            ng-show="myform.email.$invalid && myform.email.$touched">
+            Must be a valid email</p>
+          </label>
+          <label class="item item-input item-floating-label">
+            <input type="password" name="password" placeholder="Password"
+            ng-model="user.password" ng-required="true">
+            <p class=""
+            ng-show="myform.password.$invalid && myform.email.$touched">
+            Password is required</p>
+          </label>
+          <div class="item">
+            <button type="submit" class="button button-block" ng-disabled="myform.$invalid" ng-click="login(user.email, user.password)">Login</button>
+        <!-- <a class="btn" ng-href="#/register">register</a> -->
+        <p> or <a ng-href="#/register">create an account</a> if you haven't yet.</p>
+          </div>
+        </div>
       </fieldset>
-
-      <button type="submit" class="button button-block" ng-disabled="myform.$invalid" ng-click="login(user.email, user.password)">Login</button>
-      <!-- <a class="btn" ng-href="#/register">register</a> -->
-      <p> or <a ng-href="#/register">register</a> if you haven't created an account yet.</p>
     </form>
-  </section>
   </ion-content>
 </ion-view>
