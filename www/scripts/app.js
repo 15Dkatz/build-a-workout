@@ -63,7 +63,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'LoginController'
+    controller: 'AccountController'
   })
 
   .state('register', {

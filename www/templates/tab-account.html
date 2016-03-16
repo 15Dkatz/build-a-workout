@@ -1,18 +1,86 @@
 <ion-view view-title="Account">
+<!-- <button class="button">Right Button</button> -->
+	<!-- <div class="bar bar-header">
+   <h1 class="title">Header</h1>
+</div> -->
+ <!--  <ion-header-bar align-title="left" class="bar-positive">
+	  <div class="buttons">
+	    <button class="button" ng-click="doSomething()">Left Button</button>
+	  </div>
+	  <h1 class="title">Title!</h1>
+	  <div class="buttons">
+	    <button class="button">Right Button</button>
+	  </div>
+  </ion-header-bar> -->
   <ion-content>
-    <ion-list class="list">
-    	<ion-item class="item">
+    <div class="list">
+    	<div class="item">
     		<h1 class="title" ng-init="initUserData()">{{firstname}} {{lastname}}</h1>
-    	</ion-item>
-    </ion-list>
+    	</div>
+    </div>
 
     <!-- account info -->
+    <div class="list">
+	  <label class="item item-input item-stacked-label">
+	    <span class="input-label">New First Name</span>
+	    <input type="text" placeholder="" ng-model="newFirstname">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	    <span class="input-label">New Last Name</span>
+	    <input type="text" placeholder="" ng-model="newLastname">
+	  </label>
+	  <label class="item item-input item-stacked-label">
+	    <span class="input-label">New Email</span>
+	    <input type="text" placeholder="" ng-model="newEmail">
+	  </label>
+	  <div class="item">
+	  	<button class="button button-block" ng-disabled="myform.$invalid" ng-click="saveAccountChanges(newFirstname, newLastname, newEmail)">Save</button>
+	  </div>
+	</div>
 
+	<div class="list">
+    	<div class="item">
+    		<h1 class="title" ng-init="initUserData()">{{firstname}} {{lastname}}</h1>
+    	</div>
+    </div>
+	
 
-    <button class="button button-block" ng-disabled="myform.$invalid" ng-click="logout()">Logout</button>
+	<!-- <div class="bar bar-footer"> -->
+	<button class="button button-block col-80 col-offset-10" ng-disabled="myform.$invalid" ng-click="logout()">Logout</button>
+    <!-- </div> -->
   </ion-content>
 </ion-view>
+  <!-- if not a user -->
+<!-- <ion-view view-title="Account" ng-if="showLoginContent">
+  <ion-content>
+    <form name="myform" novalidate>
+        <div class="list">
+          <label class="item item-input item-floating-label">
+            <input type="email" name="email" placeholder="Email"
+             ng-model="user.email" ng-required="true">
+            <p class=""
+            ng-show="myform.email.$invalid && myform.email.$touched">
+            Must be a valid email</p>
+          </label>
+          <label class="item item-input item-floating-label">
+            <input type="password" name="password" placeholder="Password"
+            ng-model="user.password" ng-required="true">
+            <p class=""
+            ng-show="myform.password.$invalid && myform.email.$touched">
+            Password is required</p>
+          </label>
+          <div class="item">
+            <button type="submit" class="button button-block" ng-disabled="myform.$invalid" ng-click="login(user.email, user.password)">Login</button>
+        <p> or <a ng-href="#/register">create an account</a> if you haven't yet.</p>
+          </div>
+        </div>
+    </form>
+  </ion-content>
 
+</ion-view>
+ -->
+
+<!-- fix account info page. -->
 
 <!-- add name from firebase -->
 <!-- add changeEmail feature -->

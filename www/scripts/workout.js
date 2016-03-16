@@ -20,12 +20,10 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
             if (exerciseList.length>0) {
                 $scope.currentExercise = exerciseList[0];
                 exerciseTimeLimit = $scope.currentExercise["time"];
-                // console.log("exerciseTimeLimit:", exerciseTimeLimit);
             }
         }
         // timer = false;
         $scope.exerciseList = exerciseList;
-        // updateExerciseVariables();
         return exerciseList;
     }
 

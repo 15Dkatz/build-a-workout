@@ -23,7 +23,7 @@ myApp.factory('Authentication',
         email: user.email,
         password: user.password
       }).then(function(regUser) {
-        $window.location.href = '#/tab/build';
+        $window.location.href = '#/tab/workout';
       }).catch(function(error) {
        $rootScope.message = error.message;
       });

@@ -6,6 +6,7 @@ myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth',
   var auth = $firebaseAuth(ref);
   var exerciseListRef, userRef;
   var firstname, lastname;
+  var showLoginContent = true;
   auth.$onAuth(function(authUser) {
       if (authUser) {
         exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
@@ -15,6 +16,7 @@ myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth',
                   exerciseList = snapshot.val()["exerciseList"];
                   // userName = snapshot.val()[""]
                   // console.log("exerciseList:", $scope.exerciseList);
+                  showLoginContent = false;
               }
           }, function(errorObject) {
               console.log("The read failed: ", errorObject.code);
@@ -50,6 +52,9 @@ myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth',
     	return lastname;
     },
 
+    getShowLoginContent: function() {
+	 	return showLoginContent;
+	},
     // add setter methods for name
 
     setExerciseList: function(newList) {
@@ -57,6 +62,19 @@ myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth',
       
         // $scope.$apply(function() {
       exerciseListRef.update({"exerciseList": newList});
+    },
+
+    updateAccountFirstname: function(newFirstname) {
+    	userRef.update({"firstname": newFirstname});
+    },
+
+    updateAccountLastname: function(newLastname) {
+    	userRef.update({"lastname": newLastname});
+    },
+
+    updateAccountEmail: function(newEmail) {
+    	userRef.update({"email": newEmail});
     }
+
   }
 }])
