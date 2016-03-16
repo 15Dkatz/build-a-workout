@@ -42,20 +42,7 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
 
     auth.$onAuth(function(authUser) {
         if (authUser) {
-    //         var exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
-    //         exerciseListRef.once("value", function(snapshot) {
-    //             if (snapshot.exists()) {
-    //                 // $scope.exerciseList = snapshot.val()["exerciseList"];
-    //                 // sharedExercises.setExerciseList($scope.setExerciseList);
-    //                 // updateExerciseVariables();
-    //                 console.log("exerciseList:", $scope.exerciseList);
-    //             }
-    //         }, function(errorObject) {
-    //             console.log("The read failed: ", errorObject.code);
-    //         });
-
             exerciseList = sharedExercises.getExerciseList();
-            console.log("exerciseList from authUser", exerciseList); 
         }
     })
 
