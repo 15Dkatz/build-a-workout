@@ -13,40 +13,40 @@
 	  </div>
   </ion-header-bar> -->
   <ion-content>
-    <div class="list">
-    	<div class="item">
-    		<h1 class="title" ng-init="initUserData()">{{firstname}} {{lastname}}</h1>
-    	</div>
-    </div>
+    <!-- <div class="list"> -->
+    	
+    <!-- </div> -->
 
     <!-- account info -->
     <div class="list">
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">New First Name</span>
-	    <input type="text" placeholder="" ng-model="newFirstname">
-	  </label>
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">New Last Name</span>
-	    <input type="text" placeholder="" ng-model="newLastname">
-	  </label>
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">New Email</span>
-	    <input type="text" placeholder="" ng-model="newEmail">
-	  </label>
-	  <div class="item">
-	  	<button class="button button-block" ng-disabled="myform.$invalid" ng-click="saveAccountChanges(newFirstname, newLastname, newEmail)">Save</button>
-	  </div>
+    	<!-- figure out a better structure for this form!!! -->
+		<div class="item">
+		<!-- stylize -->
+			<h2 class="title">{{firstname}} {{lastname}}</h2>
+		</div>
+	  	<label class="item item-input item-stacked-label">
+	    	<span class="input-label">New First Name</span>
+	    	<input type="text" placeholder="" ng-model="newFirstname">
+	  	</label>
+	  	<label class="item item-input item-stacked-label">
+	    	<span class="input-label">New Last Name</span>
+	    	<input type="text" placeholder="" ng-model="newLastname">
+	  	</label>
+	  	<label class="item item-input item-stacked-label">
+	    	<span class="input-label">New Email</span>
+	    	<input type="text" placeholder="" ng-model="newEmail">
+	  	</label>
+	  	<div class="item">
+	  		<button class="button button-block" ng-disabled="myform.$invalid" ng-click="saveAccountChanges(newFirstname, newLastname, newEmail)">Save</button>
+	  	</div>
+	  	<div class="item"></div>
+	  	<div class="item">
+	  		<button class="button button-block" ng-disabled="myform.$invalid" ng-click="logout()">Logout</button>
+	  	</div>
 	</div>
-
-	<div class="list">
-    	<div class="item">
-    		<h1 class="title" ng-init="initUserData()">{{firstname}} {{lastname}}</h1>
-    	</div>
-    </div>
 	
 
 	<!-- <div class="bar bar-footer"> -->
-	<button class="button button-block col-80 col-offset-10" ng-disabled="myform.$invalid" ng-click="logout()">Logout</button>
     <!-- </div> -->
   </ion-content>
 </ion-view>

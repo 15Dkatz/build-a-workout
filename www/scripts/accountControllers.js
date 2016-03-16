@@ -1,19 +1,33 @@
 angular.module('starter.controllers', [])
 
 
-myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExercises', function($scope, Authentication, sharedExercises) {
+myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExercises', '$firebaseAuth', 'FIREBASE_URL', function($scope, Authentication, sharedExercises, $firebaseAuth, FIREBASE_URL) {
   $scope.firstname;
   $scope.lastname;
 
+  var ref = new Firebase(FIREBASE_URL);
+  var auth = $firebaseAuth(ref);
+
   // $scope.showLoginContent = true;  
+  auth.$onAuth(function(authUser) {
+      if (authUser) {
+        $scope.firstname = sharedExercises.getFirstname();
+        $scope.lastname = sharedExercises.getLastname();
 
-  $scope.initUserData = function() {
-    $scope.firstname = sharedExercises.getFirstname();
-    $scope.lastname = sharedExercises.getLastname();
+        console.log("firstname", $scope.firstname, "lastname", $scope.lastname);
+      }
+  })
 
-    // add more to the account.html later
-    // $scope.showLoginContent = sharedExercises.getShowLoginContent();
-  }
+
+
+
+  // $scope.initUserData = function() {
+  //   $scope.firstname = sharedExercises.getFirstname();
+  //   $scope.lastname = sharedExercises.getLastname();
+
+  //   // add more to the account.html later
+  //   // $scope.showLoginContent = sharedExercises.getShowLoginContent();
+  // }
 
   $scope.logout = function() {
     Authentication.logout();
