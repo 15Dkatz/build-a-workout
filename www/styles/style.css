@@ -17,10 +17,10 @@
 	font-weight: bold;
 }
 
-.popupCenter {
+.inputCenter {
 	text-align: center;
 }
 
-.inputCenter {
-	text-align: center;
+.inputIndent, input::-webkit-input-placeholder {
+	text-indent: 5px;
 }

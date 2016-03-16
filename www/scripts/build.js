@@ -2,8 +2,7 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
   function($scope, $rootScope, Authentication, sharedExercises, $window) {
     
     $scope.numOfExercises = 10;
-    // change to 60, 4 for testing
-    $scope.timeForExercises = 4;
+    $scope.timeForExercises = 60;
 
    
 

@@ -18,15 +18,10 @@
         	<span class="input-label">{{timeForExercises}} seconds</span>
         </label>
         <ion-list>
-
-		  <!-- <ion-checkbox ng-model="filter.blue">Tasks</ion-checkbox> -->
-	<!-- 	  <ion-checkbox ng-model="filter.cardio" name="exerciseType">Cardio Exercises</ion-checkbox>
-		  <ion-checkbox ng-model="filter.abs" name="exerciseType">Ab Exercises</ion-checkbox>
-		  <ion-checkbox ng-model="filter.upper" name="exerciseType">Upper-Body Exercises</ion-checkbox> -->
-		  <!-- <ion-checkbox ng-model="filter.pink">Pink</ion-checkbox> -->
 		    <ion-radio ng-model="exerciseType" ng-value="'abs'">Abs</ion-radio>
   			<ion-radio ng-model="exerciseType" ng-value="'cardio'">Cardio</ion-radio>
   			<ion-radio ng-model="exerciseType" ng-value="'all'">Any type</ion-radio>
+  			<!-- build random set -->
 		</ion-list>
         <div class="item">
 	        <button class="button button-block" ng-disabled="myform.$invalid" ng-click="build(numOfExercises, timeForExercises, exerciseType)">Build</button>

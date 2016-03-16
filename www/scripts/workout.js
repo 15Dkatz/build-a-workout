@@ -2,21 +2,17 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
   function($scope, $rootScope, Authentication, sharedExercises, $ionicPopup, $timeout) {
 
     var exerciseList;
+    var exerciseTimeLimit;
+    
     $scope.currentExercise;
     $scope.exerciseList;
-
-    var exerciseTimeLimit;
-
-    // a global startOk boolean to ensure that startTask doesn't press more than once and cause mutliple timers.
-    var startOk = true;
-
 
     $scope.updateExerciseList = function() {
         exerciseList = sharedExercises.getExerciseList();
         if (exerciseList.length>0) {
             $scope.currentExercise = exerciseList[0];
             exerciseTimeLimit = $scope.currentExercise["time"];
-            console.log("exerciseTimeLimit:", exerciseTimeLimit);
+            // console.log("exerciseTimeLimit:", exerciseTimeLimit);
         }
         // timer = false;
         $scope.exerciseList = exerciseList;
@@ -26,9 +22,9 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
     var updateExerciseVariables = function() {
         $scope.exerciseList = sharedExercises.getExerciseList();
         $scope.currentExercise = $scope.exerciseList[0];
-        // console
-        // timer = false;
-        // exTime = 0;
+
+        // update firebase
+        var exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
     }
 
 
@@ -52,9 +48,8 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
 
     $scope.editExercise = function(index) {
         $scope.newExercise = {};
-        // update shared properties
         var myPopup = $ionicPopup.show({
-        template: "<input placeholder='&nbsp;&nbsp;Name' type='text' ng-model='newExercise.exercise'><br><input type='number' placeholder='&nbsp;&nbsp;Time' ng-model='newExercise.time'>",
+        template: "<input class='inputIndent' placeholder='&nbsp;&nbsp;Name' type='text' ng-model='newExercise.exercise'><br><input type='number' class='inputIndent' placeholder='&nbsp;&nbsp;Time' ng-model='newExercise.time'>",
         title: 'Edit Exercise',
         scope: $scope,
         buttons: [
@@ -81,31 +76,18 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
       });
 
       $timeout(function() {
-         myPopup.close(); //close the popup after 3 seconds for some reason
+         myPopup.close(); 
       }, 10000);
     }
 
-    // $scope.currentExerciseProgress = 0;
     var timer;
     var exTime = 0;
 
     var addTime = function() {
         exerciseTimeLimit = $scope.currentExercise["time"];
-
-        console.log($scope.currentExercise["currentTime"], "currentTime");
-
-        // exTime = $scope.currentExercise["currentTime"];
-        // console.log("ex")
+        // console.log($scope.currentExercise["currentTime"], "currentTime");
         exTime+=1;
         console.log("exTime", exTime)
-
-        // $scope.currentExercise["currentTime"] = exTime;
-
-        // exerciseList[0] = $scope.currentExercise;
-
-        
-
-        // sharedExercises.setExerciseList(exerciseList);
         $scope.$apply(function() {
             updateExerciseVariables();
         });
@@ -137,13 +119,7 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
         $scope.exerciseList.shift();
         console.log($scope.exerciseList);
         sharedExercises.setExerciseList($scope.exerciseList);
-        // exerciseList = $scope.exerciseList;
-        // $scope.updateExerciseList();
-        // timer = false;
-        // clearInterval(timer);
-        updateExerciseVariables();
-        // exerciseList = $scope.exerciseList;
-        // $scope.startExercise();
+        updateExerciseVariables(); 
     }
 
     $scope.startExercise = function() {
@@ -151,7 +127,6 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
         if (!timer) {
             timer = setInterval(addTime, 1000);
         }
-        // startOk = false;
     }
 
     $scope.pauseBtn = {
@@ -173,9 +148,41 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
 
     }
 
-        
+    $scope.addExercise = function() {
+        // popup template for new Exercise
+        $scope.newExercise = {};
+        // update shared properties
+        var myPopup = $ionicPopup.show({
+        template: "<input class='inputIndent' placeholder='Name' type='text' ng-model='newExercise.exercise'><br><input type='number' class='inputIndent' placeholder='Time' ng-model='newExercise.time'>",
+        title: 'New Exercise',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Add</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if (!$scope.newExercise) {
+                e.preventDefault();
+              } else {
+                $scope.exerciseList.push($scope.newExercise);
+                sharedExercises.setExerciseList($scope.exerciseList);
+                updateExerciseVariables();
+              }
+            }
+          }
+        ]
+      });
+
+      myPopup.then(function(res) {
+        console.log('Tapped!', res);
+      });
+
+      $timeout(function() {
+         myPopup.close(); 
+      }, 10000);
+
+    }
 
 
 }]); // Controller
-
-// prevent multiple starts
