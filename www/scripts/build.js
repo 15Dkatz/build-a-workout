@@ -2,7 +2,8 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
   function($scope, $rootScope, Authentication, sharedExercises, $window) {
     
     $scope.numOfExercises = 10;
-    $scope.timeForExercises = 60;
+    // change to 60, 4 for testing
+    $scope.timeForExercises = 4;
 
    
 
@@ -10,15 +11,29 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
     // a set of ab specific exercises to randomly choose from
 
     // crunches, flutter kicks, pushups, plank, diamond pushups, jumping jacks, wall sits, lunges
+    // 'Crunches', 'Flutter Kicks', 'Pushups', 'Plank', 'Diamond Pushups', 'Jumping Jacks', 'Wall Sits', 'Lunges', 'Leg Raises', 'Crunch Twists', 'Side Plank', 'Side Lunges', 'Tuck Jumps', 'Burpees', 'Squats', 'Calf Raises', 'Bicycle', 'Crunches'];
 
-    var randomExercises = ['Crunches', 'Flutter Kicks', 'Pushups', 'Plank', 'Diamond Pushups', 'Jumping Jacks', 'Wall Sits', 'Lunges', 'Leg Raises', 'Crunch Twists', 'Side Plank', 'Side Lunges', 'Tuck Jumps', 'Burpees', 'Squats', 'Calf Raises', 'Bicycle', 'Crunches'];
+    // add custom set to Firebase,
+    // draw from customSet and append to exercises.
 
-    $scope.build = function(numOfExercises, timeForExercises) {
-    	// console.log(numOfExercises, timeForExercises, "numOfE, timeForE");
-    	// build an array that workout.js can use to construct a list of exercises
-    	// pick from random set of exercises
+    var randomExercises = [];
+    var abExercises = ['Crunches', 'Plank', 'Side Plank', 'Crunch Twists', 'Flutter Kicks', 'Bicycle'];
+    var cardioExercises = ['Pushups', 'Plank', 'Diamond Pushups', 'Jumping Jacks', 'Wall Sits', 'Lunges', 'Leg Raises', 'Side Plank', 'Side Lunges', 'Tuck Jumps', 'Burpees', 'Squats', 'Calf Raises'];
+    var allExercises = ['Crunches', 'Flutter Kicks', 'Pushups', 'Plank', 'Diamond Pushups', 'Jumping Jacks', 'Wall Sits', 'Lunges', 'Leg Raises', 'Crunch Twists', 'Side Plank', 'Side Lunges', 'Tuck Jumps', 'Burpees', 'Squats', 'Calf Raises', 'Bicycle', 'Crunches'];
 
-    	// of length numOfExercises, of time timeForExercises
+    $scope.build = function(numOfExercises, timeForExercises, exerciseType) {
+        switch(exerciseType) {
+            case 'abs':
+                randomExercises = abExercises;
+                break;
+            case 'cardio':
+                randomExercises = cardioExercises;
+                break;
+            case 'all':
+                randomExercises = allExercises;
+            default:
+                randomExercises = allExercises;
+        }
 
 
     	var exerciseList = [];
@@ -29,18 +44,14 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
     		var randEx = randomExercises[Math.floor(Math.random()*randomExercises.length)];
     		var exercise = {
     			'time': timeForExercises,
-    			'exercise': randEx
+    			'exercise': randEx,
+                'currentTime': 0
     		}
     		exerciseList.push(exercise);
     	}
 
     	sharedExercises.setExerciseList(exerciseList);
-    	// .then(function(regUser) {
-    	// $scope.$apply({
-    		// $location.path('#/tab/workout');	
-    		$window.location.href = '#/tab/workout';
-    	// })
-        
+		$window.location.href = '#/tab/workout';
     }
 
 
