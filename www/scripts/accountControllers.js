@@ -49,9 +49,24 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
     sharedExercises.updateAccountEmail(newEmail);
   }
 
-  $scope.changeEmail = function(newEmail, password) {
-    console.log("attempting email change", "password:", password, "password.type:", typeof password);
-    Authentication.changeEmail(newEmail);
+  // $scope.changeEmail = function(newEmail, password) {
+  //   // console.log("attempting email change", "password:", password, "password.type:", typeof password);
+  //   Authentication.changeEmail(newEmail);
+  // }
+
+  $scope.updateFirstname = function(newFirstname) {
+    sharedExercises.updateAccountFirstname(newFirstname);
+    $scope.firstname = newFirstname;
+  }
+
+  $scope.updateLastname = function(newLastname) {
+    sharedExercises.updateAccountLastname(newLastname);
+    $scope.lastname = newLastname;
+  }
+
+  // add last Name function...
+  $scope.updateEmail = function(oldEmail, newEmail, currentPassword) {
+    Authentication.changeEmail(oldEmail, newEmail, currentPassword);
   }
 
 }])

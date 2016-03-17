@@ -24,7 +24,47 @@
 		<!-- stylize -->
 			<h2 class="title">{{firstname}} {{lastname}}</h2>
 		</div>
-	  	<label class="item item-input item-stacked-label">
+		<div class="item item-input-inset">
+		   	<label class="item-input-wrapper">
+		      	<input type="text" placeholder="New First Name" ng-model="newFirstname" class="inputIndent">
+		    </label>
+		    <button class="button button-small" ng-click="updateFirstname(newFirstname)">
+		 	    Submit
+		    </button>
+		 </div>
+		 <div class="item item-input-inset">
+		   	<label class="item-input-wrapper">
+		      	<input type="text" placeholder="New last Name" ng-model="newLastname" class="inputIndent">
+		    </label>
+		    <button class="button button-small" ng-click="updateLastname(newLastname)">
+		 	    Submit
+		    </button>
+		 </div>
+		 <div class="item item-input-inset">
+		 	<label class="item-input-wrapper">
+		      	<input type="text" placeholder="Old Email" ng-model="oldEmail" class="inputIndent">
+		      	
+		    </label>
+		   	<label class="item-input-wrapper">
+		      	<input type="text" placeholder="New Email" ng-model="newEmail" class="inputIndent">
+		      	
+		    </label>
+
+		    <button class="button button-small" ng-click="updateEmail(oldEmail, newEmail, password)">
+		 	    Submit
+		    </button>
+		    <!-- <br> -->
+		    <label class="item">
+		    	
+		    </label>
+		 </div>
+		 <div class="item">
+		 	<input type="password	" placeholder="Password needed" ng-model="password" class="inputIndent">
+		 </div>
+
+
+
+	  	<!-- <label class="item item-input item-stacked-label">
 	    	<span class="input-label">New First Name</span>
 	    	<input type="text" placeholder="" ng-model="newFirstname">
 	  	</label>
@@ -34,17 +74,17 @@
 	  	</label>
 	  	<label class="item item-input item-stacked-label">
 	    	<span class="input-label">New Email</span>
-	    	<input type="text" placeholder="" ng-model="newEmail">
+	    	<input type="text" placeholder="" ng-model="newEmail"> -->
 	    	
 <!-- 	    	<span class="input-label">Password</span>
 	    	<input type="password" placeholder="" ng-model="password">
 	    	place on right
 	    	<button class="button button-block" ng-click="changeEmail(newEmail)">Change</button> -->
-	  	</label>
+<!-- 	  	</label>
 	  	<div class="item">
 	  		<button class="button button-block" ng-disabled="myform.$invalid" ng-click="saveAccountChanges(newFirstname, newLastname, newEmail)">Save</button>
 	  	</div>
-
+ -->
 <!-- 	  	<button class="button button-block" ng-click="changeEmail(newEmail, password)">Change</button> -->
 	  	<div class="item"></div>
 	  	<div class="item">

@@ -38,6 +38,7 @@ myApp.factory('Authentication',
       // $location.path('#/build')
     }, //login
 
+
     logout: function() {
       console.log("running auth.$unauth()");
       $location.path('/login')
@@ -49,6 +50,7 @@ myApp.factory('Authentication',
     }, //require Authentication
 
     register: function(user) {
+      console.log("registering user");
       auth.$createUser({
         email: user.email,
         password: user.password
@@ -70,33 +72,33 @@ myApp.factory('Authentication',
       }); // //createUser
     }, // register
 
-  //   changeEmail: function(newEmail, password) {
-  //     ref.changeEmail({
-  //       oldEmail: $rootScope.currentUser.email,
-  //       newEmail: newEmail,
-  //       password: password
-  //     },
-  //     // ).then(function(regUser) {
-  //     //   var regRef = new Firebase(FIREBASE_URL + 'users');
-  //     //   regRef.update({"email": newEmail});
-  //     // }).catch( 
-  //     function(error) {
-  //       if (error) {
-  //         switch (error.code) {
-  //           case "INVALID_PASSWORD":
-  //             console.log("The specified user account password is incorrect.");
-  //             break;
-  //           case "INVALID_USER":
-  //             console.log("The specified user account does not exist.");
-  //             break;
-  //           default:
-  //             console.log("Error creating user:", error);
-  //         }
-  //       } else {
-  //         console.log("User email changed successfully!");
-  //       }
-  //     })
-  // }
+    changeEmail: function(oldEmail, newEmail, password) {
+      auth.$changeEmail({
+        oldEmail: oldEmail,
+        newEmail: newEmail,
+        password: password
+      }
+      ).then(function(regUser) {
+        var regRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id);
+        regRef.update({"email": newEmail});
+      }).catch( 
+      function(error) {
+        if (error) {
+          switch (error.code) {
+            case "INVALID_PASSWORD":
+              console.log("The specified user account password is incorrect.");
+              break;
+            case "INVALID_USER":
+              console.log("The specified user account does not exist.");
+              break;
+            default:
+              console.log("Error creating user:", error);
+          }
+        } else {
+          console.log("User email changed successfully!");
+        }
+      })
+  }
 
 
 
