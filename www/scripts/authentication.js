@@ -45,7 +45,7 @@ myApp.factory('Authentication',
       console.log("running auth.$unauth()");
       $location.path('/login')
       return auth.$unauth();
-    }, //logout
+    }, //logouts
 
     requireAuth: function() {
       return auth.$requireAuth();
@@ -114,8 +114,42 @@ myApp.factory('Authentication',
           console.log("Error changing password:", error);
         }
       })
-    }
+    },
 
+// Sending Password Reset Emails
+
+// You can send the user a password reset email using the email address for that account:
+
+// Copy
+// var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+// ref.resetPassword({
+//   email : "bobtony@firebase.com"
+// }, function(error) {
+//   if (error === null) {
+//     console.log("Password reset email sent successfully");
+//   } else {
+//     console.log("Error sending password reset email:", error);
+//   }
+// }); -->
+
+    resetPassword: function(email) {
+      auth.$resetPassword({
+      email : email
+      })
+      .then( function(){
+        $rootScope.emailResetMessage = "Password reset email sent successfully";
+        console.log("Password reset email sent successfully");
+      })
+      .catch(function(error) {
+        if (error === null) {
+          $rootScope.emailResetMessage = "Password reset email sent successfully";
+          console.log("Password reset email sent successfully");
+        } else {
+          $rootScope.emailResetMessage = "The specified email does not exist.";
+          console.log("Error sending password reset email:", error);
+        }
+      }); 
+    }
 
 
 

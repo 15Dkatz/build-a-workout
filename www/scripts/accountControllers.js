@@ -11,12 +11,12 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
 
   // $scope.showLoginContent = true;  
   auth.$onAuth(function(authUser) {
-      if (authUser) {
-        $scope.firstname = sharedExercises.getFirstname();
-        $scope.lastname = sharedExercises.getLastname();
+    if (authUser) {
+      $scope.firstname = sharedExercises.getFirstname();
+      $scope.lastname = sharedExercises.getLastname();
 
-        console.log("firstname", $scope.firstname, "lastname", $scope.lastname);
-      }
+      console.log("firstname", $scope.firstname, "lastname", $scope.lastname);
+    }
   })
 
 
@@ -48,7 +48,7 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
     sharedExercises.updateAccountFirstname(newFirstname);
     sharedExercises.updateAccountLastname(newLastname);
     sharedExercises.updateAccountEmail(newEmail);
-  }
+  };
 
   // $scope.changeEmail = function(newEmail, password) {
   //   // console.log("attempting email change", "password:", password, "password.type:", typeof password);
@@ -61,14 +61,14 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
       $scope.firstname = newFirstname;
     }
     
-  }
+  };
 
   $scope.updateLastname = function(newLastname) {
     if (newLastname) {
       sharedExercises.updateAccountLastname(newLastname);
       $scope.lastname = newLastname; 
     }
-  }
+  };
 
   // add last Name function...
   $scope.updateEmail = function(oldEmail, newEmail, currentPassword) {
@@ -101,7 +101,7 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
            myPopup.close(); 
         }, 1200000);
 
-  }
+  };
 
   $scope.updatePassword = function() {
     $scope.newUserSettings = {};
@@ -125,17 +125,69 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
          ]
         });
 
-        myPopup.then(function(res) {
-          console.log('Tapped!', res);
-        });
+    myPopup.then(function(res) {
+      console.log('Tapped!', res);
+    });
 
-        $timeout(function() {
-           myPopup.close(); 
-        }, 1200000);
+    $timeout(function() {
+       myPopup.close(); 
+    }, 1200000);
+  };
+  
 
-  }
 
+// Sending Password Reset Emails
 
+// You can send the user a password reset email using the email address for that account:
+
+// Copy
+// var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+// ref.resetPassword({
+//   email : "bobtony@firebase.com"
+// }, function(error) {
+//   if (error === null) {
+//     console.log("Password reset email sent successfully");
+//   } else {
+//     console.log("Error sending password reset email:", error);
+//   }
+// }); 
+  $scope.test = function() {
+    console.log("attempting password reset");
+  };
+
+  $scope.resetPassword = function() {
+      console.log("attempting password reset");
+      $scope.newUserSettings = {};
+      var myPopup = $ionicPopup.show({
+          templateUrl: "templates/popups/resetPassword.html",
+          title: 'Confirm Password Change',
+          scope: $scope,
+          buttons: [
+            { text: 'Cancel' },
+            {
+              text: '<b>Submit</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                if (!$scope.newUserSettings) {
+                  e.preventDefault();
+                } else {
+                  Authentication.resetPassword($scope.newUserSettings.email);
+                }
+              }
+            }
+           ]
+          });
+
+          myPopup.then(function(res) {
+            console.log('Tapped!', res);
+          });
+
+          $timeout(function() {
+             myPopup.close(); 
+          }, 1200000);
+    }; 
+
+  // }
 
 }])
 

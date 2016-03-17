@@ -18,54 +18,36 @@
           <label class="item item-input item-floating-label">
             <input type="email" name="email" placeholder="Email"
              ng-model="user.email" ng-required="true" class="inputIndent">
-            <p class=""
-            ng-show="myform.email.$invalid && myform.email.$touched">
-            Must be a valid email</p>
+            <p class="" ng-show="myform.email.$invalid && myform.email.$touched">
+              Must be a valid email
+            </p>
           </label>
           <label class="item item-input item-floating-label">
             <input type="password" name="password" placeholder="Password"
             ng-model="user.password" ng-required="true" class="inputIndent">
-            <p class=""
-            ng-show="myform.password.$invalid && myform.email.$touched">
-            Password is required</p>
-            <p class=""
-            >
-            {{message}} </p>
-
-
-            <!-- 
-Sending Password Reset Emails
-
-You can send the user a password reset email using the email address for that account:
-
-Copy
-var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
-ref.resetPassword({
-  email : "bobtony@firebase.com"
-}, function(error) {
-  if (error === null) {
-    console.log("Password reset email sent successfully");
-  } else {
-    console.log("Error sending password reset email:", error);
-  }
-}); -->
-
+            <p class="" ng-show="myform.password.$invalid && myform.email.$touched">
+              Password is required
+            </p>
+            <p class="">
+              {{message}} 
+            </p>
+            <p>
+              
+              <!-- popup with email -->
+              {{emailResetMessage}}
+            </p>
 
             
           </label>
           <div class="item">
+            <p>
+              <a ng-click="resetPassword()" ng-href="#/login">Forgot password?</a>
+            </p>
             <button type="submit" class="button button-block" ng-disabled="myform.$invalid" ng-click="login(user.email, user.password)">Login</button>
-        <!-- <a class="btn" ng-href="#/register">register</a> -->
-          <!-- </div> -->
-          <!-- <div> -->
             <p> or <a ng-href="#/register">create an account</a> if you haven't yet.</p>
-
-
-
-
           </div>
         </div>
       <!-- </fieldset> -->
-    </form>
+    <!-- </form> -->
   </ion-content>
 </ion-view>
