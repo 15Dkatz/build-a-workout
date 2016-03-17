@@ -1,22 +1,43 @@
 <ion-view view-title="Build">
   <ion-content class="">
     <div class="list">
-    	<label class="item item-input item-stacked-label">
-    		<span class="input-label">Number of Exercises</span>
+    	<label class="item item-input item-stacked">
+    		<!-- <i class="icon">
+    			
+    		</i> -->
+    		<span class="input-label">Number of exercises</span>
+    		<!-- <span class="col col-offset-25"> -->
+    		<span class="range">
+    			<input class="range" type="range" string-to-number min="0" max="100" ng-model="numOfExercises"/>
+    		</span>
+    		<input type="tel" ng-model="numOfExercises"/>
+    		<!-- </span> -->
   		</label>
-      	<label class="item-input item-stacked item range">
+      	<!-- <label class="item-input item-stacked item range"> -->
       		
-        	<input type="range" string-to-number min="0" max="100" ng-model="numOfExercises"/>
-        	<span class="input-label">{{numOfExercises}} exercises</span>
-        </label>
-        <label class="item item-input item-stacked-label">
-    		<span class="input-label">Time for Exercises</span>
+        	
+        	<!-- <span class="input-label">{{numOfExercises}} exercises</span> -->
+        <!-- </label> -->
+        <label class="item item-input">
+    		<!-- <span class="input-label">Time for each exercise</span>
+    		<! <span class="col col-offset-25"> -->
+    		<!-- <input type="range" string-to-number min="0" max="100" ng-model="timeForExercises"/> -->
+    		<!-- <input type="tel" ng-model="timeForExercises"/> -->
+    		<!-- </span> -->
+    		<span class="input-label">Time for each&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    		<!-- <span class="col col-offset-25"> -->
+    		<!-- <span class="col col-50"> -->
+    		<span class="range">
+    			<input class="range" type="range" string-to-number min="0" max="100" ng-model="timeForExercises"/>
+    		</span>
+    		<input type="tel" ng-model="timeForExercises"/>
+    		<!-- </span> -->
   		</label>
-      	<label class="item-input item-stacked item range">
+      	<!-- <label class="item-input item-stacked item range"> -->
       		
-        	<input type="range" string-to-number min="0" max="100" ng-model="timeForExercises"/>
-        	<span class="input-label">{{timeForExercises}} seconds</span>
-        </label>
+        	
+        	<!-- <span class="input-label">{{timeForExercises}} seconds</span> -->
+        <!-- </label> -->
         <ion-list>
 		    <ion-radio ng-model="exerciseType" ng-value="'abs'">Abs</ion-radio>
   			<ion-radio ng-model="exerciseType" ng-value="'cardio'">Cardio</ion-radio>

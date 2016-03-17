@@ -1,33 +1,14 @@
 <ion-view view-title="Account">
-<!-- <button class="button">Right Button</button> -->
-	<!-- <div class="bar bar-header">
-   <h1 class="title">Header</h1>
-</div> -->
-  <!-- <ion-header-bar align-title="left" class="bar-positive">
-	  <div class="buttons">
-	    <button class="button" ng-click="doSomething()">Left Button</button>
-	  </div>
-	  <h1 class="title">Title!</h1>
-	  <div class="buttons">
-	    <button class="button">Right Button</button>
-	  </div>
-  </ion-header-bar> -->
-   <ion-nav-bar class="bar">
+  </ion-header-bar>
+   <ion-nav-bar class="bar grey">
     <ion-nav-buttons side="right">
     <button class="button button-clear button-dark" ng-click="logout()">Logout</button>
   </ion-nav-buttons>
 
   </ion-nav-bar>
   <ion-content>
-    <!-- <div class="list"> -->
-    	
-    <!-- </div> -->
-
-    <!-- account info -->
     <div class="list">
-    	<!-- figure out a better structure for this form!!! -->
 		<div class="item">
-		<!-- stylize -->
 			<h2 class="title">{{firstname}} {{lastname}}</h2>
 		</div>
 		<div class="item item-input-inset">
@@ -50,107 +31,18 @@
 		   	<label class="item-input-wrapper">
 		      	<input type="text" placeholder="Change Email" ng-model="newEmail" class="inputIndent">
 		    </label>
-		    <button class="button button-small" ng-click="updateEmail(oldEmail, newEmail, password)">
+		    <button class="button button-small" ng-click="updateEmail()">
 		 	    Submit
 		    </button>
 		 </div>
 		 <div class="item item-input-inset">
 		   	<label class="item-input-wrapper">
-		      	<input type="text" placeholder="Change Password" ng-model="newLastname" class="inputIndent">
+		      	<input type="text" placeholder="Change Password" ng-model="newPassword" class="inputIndent">
 		    </label>
-		    <button class="button button-small" ng-click="updateLastname(newLastname)">
+		    <button class="button button-small" ng-click="updatePassword(password)">
 		 	    Submit
 		    </button>
 		 </div>
-		 <div class="item">
-		 	<!-- <label class="item-input-wrapper">
-		      	<input type="text" placeholder="Old Email" ng-model="oldEmail" class="inputIndent">
-		      	
-		    </label>
-		   	<label class="item-input-wrapper">
-		      	<input type="text" placeholder="New Email" ng-model="newEmail" class="inputIndent">
-		      	
-		    </label> -->
-		    <div class="row">
-			    <button class="button button-block col col-50" ng-click="updateEmail(oldEmail, newEmail, password)">
-			 	    Change Email
-			    </button>
-			    <button class="button button-block col col-50" ng-click="updatePassword(email, oldEmail, newEmail)">
-			 	    Change Password
-			    </button>
-		    </div>
-		    <!-- <br> -->
-		 </div>
-
-
-
-	  	<!-- <label class="item item-input item-stacked-label">
-	    	<span class="input-label">New First Name</span>
-	    	<input type="text" placeholder="" ng-model="newFirstname">
-	  	</label>
-	  	<label class="item item-input item-stacked-label">
-	    	<span class="input-label">New Last Name</span>
-	    	<input type="text" placeholder="" ng-model="newLastname">
-	  	</label>
-	  	<label class="item item-input item-stacked-label">
-	    	<span class="input-label">New Email</span>
-	    	<input type="text" placeholder="" ng-model="newEmail"> -->
-	    	
-<!-- 	    	<span class="input-label">Password</span>
-	    	<input type="password" placeholder="" ng-model="password">
-	    	place on right
-	    	<button class="button button-block" ng-click="changeEmail(newEmail)">Change</button> -->
-<!-- 	  	</label>
-	  	<div class="item">
-	  		<button class="button button-block" ng-disabled="myform.$invalid" ng-click="saveAccountChanges(newFirstname, newLastname, newEmail)">Save</button>
-	  	</div>
- -->
-<!-- 	  	<button class="button button-block" ng-click="changeEmail(newEmail, password)">Change</button> -->
-	  	<!-- <div class="item"></div>
-	  	<div class="item">
-	  		<button class="button button-block" ng-disabled="myform.$invalid" ng-click="logout()">Logout</button>
-	  	</div> -->
 	</div>
-	
-
-	<!-- fix! -->
-
-	<!-- <div class="bar bar-footer"> -->
-    <!-- </div> -->
   </ion-content>
 </ion-view>
-  <!-- if not a user -->
-<!-- <ion-view view-title="Account" ng-if="showLoginContent">
-  <ion-content>
-    <form name="myform" novalidate>
-        <div class="list">
-          <label class="item item-input item-floating-label">
-            <input type="email" name="email" placeholder="Email"
-             ng-model="user.email" ng-required="true">
-            <p class=""
-            ng-show="myform.email.$invalid && myform.email.$touched">
-            Must be a valid email</p>
-          </label>
-          <label class="item item-input item-floating-label">
-            <input type="password" name="password" placeholder="Password"
-            ng-model="user.password" ng-required="true">
-            <p class=""
-            ng-show="myform.password.$invalid && myform.email.$touched">
-            Password is required</p>
-          </label>
-          <div class="item">
-            <button type="submit" class="button button-block" ng-disabled="myform.$invalid" ng-click="login(user.email, user.password)">Login</button>
-        <p> or <a ng-href="#/register">create an account</a> if you haven't yet.</p>
-          </div>
-        </div>
-    </form>
-  </ion-content>
-
-</ion-view>
- -->
-
-<!-- fix account info page. -->
-
-<!-- add name from firebase -->
-<!-- add changeEmail feature -->
-<!-- add changePassword feature -->

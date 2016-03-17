@@ -1,4 +1,4 @@
-<ion-view view-title="Workout">
+<ion-view view-title="Exercises">
   <ion-content class="">
     <div class="">
       <!-- titleDiv -->
@@ -28,7 +28,7 @@
       <button class="button button-clear icon-left ion-minus-circled" ng-click="data.shouldShowDelete = !data.shouldShowDelete"></button>
       <button class="button button-clear icon-left ion-plus-circled" ng-click="addExercise()"></button>
       <!-- + button to addTask oneAtATime -->
-        <h1 class="title">Exercises</h1>
+        <h1 class="title">To Do</h1>
         <button class="button button-clear icon-right" ng-click="data.showReordering = !data.showReordering">Reorder</button>
     </div>
     <ion-list class="list" show-reorder="data.showReordering" show-delete="data.shouldShowDelete" can-swipe="data.canSwipe">
@@ -53,3 +53,5 @@
 <!-- store in firebase -->
 
 <!-- add list-avatar pictures for each exercise later -->
+
+<!-- fix input number in build.html and fix the color of nav-bar in tab-account.html -->

@@ -21,6 +21,10 @@
 	text-align: center;
 }
 
-/*.inputIndent, input::-webkit-input-placeholder {
-	text-indent: 5px;
-}*/
+.inputIndent, input::-webkit-input-placeholder {
+	text-indent: 2%;
+}
+
+.grey {
+	background-color: #f8f8f8;
+}

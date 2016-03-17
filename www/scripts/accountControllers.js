@@ -56,20 +56,25 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
   // }
 
   $scope.updateFirstname = function(newFirstname) {
-    sharedExercises.updateAccountFirstname(newFirstname);
-    $scope.firstname = newFirstname;
+    if (newFirstname) {
+      sharedExercises.updateAccountFirstname(newFirstname);
+      $scope.firstname = newFirstname;
+    }
+    
   }
 
   $scope.updateLastname = function(newLastname) {
-    sharedExercises.updateAccountLastname(newLastname);
-    $scope.lastname = newLastname;
+    if (newLastname) {
+      sharedExercises.updateAccountLastname(newLastname);
+      $scope.lastname = newLastname; 
+    }
   }
 
   // add last Name function...
   $scope.updateEmail = function(oldEmail, newEmail, currentPassword) {
     $scope.newUserSettings = {};
     var myPopup = $ionicPopup.show({
-        template: "<input class='inputIndent' placeholder='Old Email' type='text' ng-model='newUserSettings.oldEmail'><br><input type='password' class='inputIndent' placeholder='Current Password' ng-model='newUserSettings.currentPassword'><br><input type='text' class='inputIndent' placeholder='New Email' ng-model='newUserSettings.newEmail'>",
+        templateUrl: "templates/popups/changeEmail.html",
         title: 'Confirm Email Change',
         scope: $scope,
         buttons: [
@@ -98,10 +103,10 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
 
   }
 
-  $scope.updatePassword = function(email, oldPassword, newPassword) {
+  $scope.updatePassword = function() {
     $scope.newUserSettings = {};
     var myPopup = $ionicPopup.show({
-        template: "<input class='inputIndent' placeholder='Email' type='text' ng-model='newUserSettings.email'><br><input type='password' class='inputIndent' placeholder='Old Password' ng-model='newUserSettings.oldPassword'><br><input type='password' class='inputIndent' placeholder='New Password' ng-model='newUserSettings.newPassword'>",
+        templateUrl: "templates/popups/changePassword.html",
         title: 'Confirm Password Change',
         scope: $scope,
         buttons: [
