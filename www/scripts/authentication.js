@@ -32,7 +32,7 @@ myApp.factory('Authentication',
       }).then(function(regUser) {
         $window.location.href = '#/tab/build';
       }).catch(function(error) {
-       $rootScope.message = error.message;
+       $rootScope.message = "Invalid username and password combination.";
        // if (error) {
        //  console.log("Invalid username and password combination."); 
        // }
@@ -52,7 +52,8 @@ myApp.factory('Authentication',
     }, //require Authentication
 
     register: function(user) {
-      console.log("registering user");
+      console.log("registering user, email:", user.email);
+
       auth.$createUser({
         email: user.email,
         password: user.password

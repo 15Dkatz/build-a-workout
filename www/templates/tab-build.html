@@ -39,14 +39,25 @@
         	<!-- <span class="input-label">{{timeForExercises}} seconds</span> -->
         <!-- </label> -->
         <ion-list>
-		    <ion-radio ng-model="exerciseType" ng-value="'abs'">Abs</ion-radio>
-  			<ion-radio ng-model="exerciseType" ng-value="'cardio'">Cardio</ion-radio>
-  			<ion-radio ng-model="exerciseType" ng-value="'all'">Any type</ion-radio>
+        	<div class="item item-divider">
+        		<h2 class="title left">Category</h2>
+  			</div>
+  			<ion-radio ng-model="exerciseType" ng-value="'abs'">Abs</ion-radio>
+	  		<ion-radio ng-model="exerciseType" ng-value="'cardio'">Cardio</ion-radio>
+	  		<ion-radio ng-model="exerciseType" ng-value="'all'">Any type</ion-radio>
+	  		<ion-radio ng-model="exerciseType" ng-value="'all'">Custom Category</ion-radio>
+
+	  		<!-- open sidenav bar -->
+
+  			<!-- CREATE CUSTOM Category -->
   			<!-- build random set -->
 		</ion-list>
         <div class="item">
-	        <button class="button button-block" ng-disabled="myform.$invalid" ng-click="build(numOfExercises, timeForExercises, exerciseType)">Build</button>
+	        <button class="button button-block button-outline button-dark" ng-disabled="myform.$invalid" ng-click="build(numOfExercises, timeForExercises, exerciseType)">Submit</button>
         </div>
     </div>
   </ion-content>
 </ion-view>
+
+
+

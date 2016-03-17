@@ -160,7 +160,8 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
       $scope.newUserSettings = {};
       var myPopup = $ionicPopup.show({
           templateUrl: "templates/popups/resetPassword.html",
-          title: 'Confirm Password Change',
+          title: 'Your email',
+          // subtilte: '',
           scope: $scope,
           buttons: [
             { text: 'Cancel' },

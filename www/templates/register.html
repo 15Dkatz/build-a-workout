@@ -2,11 +2,18 @@
 
 
 <ion-view view-title="">
+ <!--  <ion-nav-bar class="bar grey">
+    <ion-nav-buttons side="right">
+      <button class="button button-clear button-dark" 
+      		  ng-disabled="myform.$invalid" 
+      		  ng-click="register(user.firstname, user.lastname, user.email, user.password)">
+      	Register
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar> -->
   <ion-content>
     <div class="list register">
-	  <form name="myform"
-	    ng-submit="register(user.firstname, user.lastname, user.email, user.password)"
-	    novalidate>
+	  <!-- <form name="myform"> -->
 <!-- 
 	    <div class="textintro item bar bar-dark">
 	      <h1 class="title">Create Account</h1>
@@ -46,11 +53,13 @@
 
 	    <!-- </fieldset> -->
 	    <div class="item">
-		    <button type="submit" class="button button-block"
-		    ng-disabled="myform.$invalid">Create Account</button>
+		    <button class="button button-block" ng-disabled="myform.$invalid" 
+      		  ng-click="register(user.firstname, user.lastname, user.email, user.password)">
+		    	Create Account
+		    </button>
 		    <!-- <button class="btn" ng-href="#/login">login</button> -->
 		 </div>
-	  </form>
+	  <!-- </form> -->
 	</div>
 
   </ion-content>

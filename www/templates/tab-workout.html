@@ -1,4 +1,4 @@
-<ion-view view-title="Exercises">
+<ion-view view-title="Workout">
   <ion-content class="">
     <div class="">
       <!-- titleDiv -->
@@ -16,11 +16,11 @@
 
     <div class="row topButtons">
       <div class="col col-50">
-        <button class="button button-block icon-right ion-play topButtons" ng-click="startExercise()" ng-if="showStartButton">Start</button>
-        <button class="button button-block icon-right topButtons {{pauseBtn.ionname}}" ng-click="pauseExercise()" ng-if="!showStartButton">{{pauseBtn.name}}</button>
+        <button class="button button-block icon-right ion-play button-outline button-dark topButtons" ng-click="startExercise()" ng-if="showStartButton">Start</button>
+        <button class="button button-block icon-right topButtons button-outline button-dark {{pauseBtn.ionname}}" ng-click="pauseExercise()" ng-if="!showStartButton">{{pauseBtn.name}}</button>
       </div>
       <div class="col col-50">
-        <button class="button button-block icon-right ion-ios-skipforward topButtons" ng-click="skipExercise()">Skip</button>
+        <button class="button button-block button-outline button-dark icon-right ion-ios-skipforward topButtons" ng-click="skipExercise()">Skip</button>
       </div>
     </div>
     
@@ -28,7 +28,7 @@
       <button class="button button-clear icon-left ion-minus-circled" ng-click="data.shouldShowDelete = !data.shouldShowDelete"></button>
       <button class="button button-clear icon-left ion-plus-circled" ng-click="addExercise()"></button>
       <!-- + button to addTask oneAtATime -->
-        <h1 class="title">To Do</h1>
+        <h1 class="title">Exercises</h1>
         <button class="button button-clear icon-right" ng-click="data.showReordering = !data.showReordering">Reorder</button>
     </div>
     <ion-list class="list" show-reorder="data.showReordering" show-delete="data.shouldShowDelete" can-swipe="data.canSwipe">
