@@ -59,8 +59,8 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
 
     // change color here later!
     var progressBarCircle = new ProgressBar.Circle("#progressBarCircle", {
-        color: '#ef473a',
-        strokeWidth: 3
+        color: '#ef473c',
+        strokeWidth: 8
     })
 
 
@@ -232,3 +232,6 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
 
 
 }]); // Controller
+
+
+// put the build and the login button in the bar.

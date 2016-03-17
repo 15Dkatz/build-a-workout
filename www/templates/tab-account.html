@@ -1,5 +1,5 @@
 <ion-view view-title="Account">
-  </ion-header-bar>
+  <!-- </ion-header-bar> -->
    <ion-nav-bar class="bar grey">
     <ion-nav-buttons side="right">
     <button class="button button-clear button-dark" ng-click="logout()">Logout</button>
@@ -10,6 +10,11 @@
     <div class="list">
 		<div class="item">
 			<h2 class="title">{{firstname}} {{lastname}}</h2>
+
+			<!-- Add offline capabilities!
+			https://www.firebase.com/docs/web/guide/offline-capabilities.html -->
+
+
 		</div>
 		<div class="item item-input-inset">
 		   	<label class="item-input-wrapper">
@@ -50,3 +55,6 @@
 
 <!-- never run grunt:emulate ios -->
 <!-- simply run ionic emulate ios -->
+
+
+<!-- ADD! send reset email button! -->

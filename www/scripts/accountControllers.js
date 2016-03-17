@@ -41,7 +41,7 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
         'password': password
       }
       Authentication.login(user);
-      $scope.showLoginContent = false;
+      // $scope.showLoginContent = false;
   }; //login
 
   $scope.saveAccountChanges = function(newFirstname, newLastname, newEmail) {

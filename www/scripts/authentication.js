@@ -30,9 +30,12 @@ myApp.factory('Authentication',
         email: user.email,
         password: user.password
       }).then(function(regUser) {
-        $window.location.href = '#/tab/workout';
+        $window.location.href = '#/tab/build';
       }).catch(function(error) {
        $rootScope.message = error.message;
+       // if (error) {
+       //  console.log("Invalid username and password combination."); 
+       // }
       });
       // $location.path('#/build')
     }, //login
