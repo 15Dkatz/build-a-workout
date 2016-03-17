@@ -3,7 +3,7 @@
 	<!-- <div class="bar bar-header">
    <h1 class="title">Header</h1>
 </div> -->
- <!--  <ion-header-bar align-title="left" class="bar-positive">
+  <!-- <ion-header-bar align-title="left" class="bar-positive">
 	  <div class="buttons">
 	    <button class="button" ng-click="doSomething()">Left Button</button>
 	  </div>
@@ -12,6 +12,12 @@
 	    <button class="button">Right Button</button>
 	  </div>
   </ion-header-bar> -->
+   <ion-nav-bar class="bar">
+    <ion-nav-buttons side="right">
+    <button class="button button-clear button-dark" ng-click="logout()">Logout</button>
+  </ion-nav-buttons>
+
+  </ion-nav-bar>
   <ion-content>
     <!-- <div class="list"> -->
     	
@@ -41,25 +47,39 @@
 		    </button>
 		 </div>
 		 <div class="item item-input-inset">
-		 	<label class="item-input-wrapper">
+		   	<label class="item-input-wrapper">
+		      	<input type="text" placeholder="Change Email" ng-model="newEmail" class="inputIndent">
+		    </label>
+		    <button class="button button-small" ng-click="updateEmail(oldEmail, newEmail, password)">
+		 	    Submit
+		    </button>
+		 </div>
+		 <div class="item item-input-inset">
+		   	<label class="item-input-wrapper">
+		      	<input type="text" placeholder="Change Password" ng-model="newLastname" class="inputIndent">
+		    </label>
+		    <button class="button button-small" ng-click="updateLastname(newLastname)">
+		 	    Submit
+		    </button>
+		 </div>
+		 <div class="item">
+		 	<!-- <label class="item-input-wrapper">
 		      	<input type="text" placeholder="Old Email" ng-model="oldEmail" class="inputIndent">
 		      	
 		    </label>
 		   	<label class="item-input-wrapper">
 		      	<input type="text" placeholder="New Email" ng-model="newEmail" class="inputIndent">
 		      	
-		    </label>
-
-		    <button class="button button-small" ng-click="updateEmail(oldEmail, newEmail, password)">
-		 	    Submit
-		    </button>
+		    </label> -->
+		    <div class="row">
+			    <button class="button button-block col col-50" ng-click="updateEmail(oldEmail, newEmail, password)">
+			 	    Change Email
+			    </button>
+			    <button class="button button-block col col-50" ng-click="updatePassword(email, oldEmail, newEmail)">
+			 	    Change Password
+			    </button>
+		    </div>
 		    <!-- <br> -->
-		    <label class="item">
-		    	
-		    </label>
-		 </div>
-		 <div class="item">
-		 	<input type="password	" placeholder="Password needed" ng-model="password" class="inputIndent">
 		 </div>
 
 
@@ -86,10 +106,10 @@
 	  	</div>
  -->
 <!-- 	  	<button class="button button-block" ng-click="changeEmail(newEmail, password)">Change</button> -->
-	  	<div class="item"></div>
+	  	<!-- <div class="item"></div>
 	  	<div class="item">
 	  		<button class="button button-block" ng-disabled="myform.$invalid" ng-click="logout()">Logout</button>
-	  	</div>
+	  	</div> -->
 	</div>
 	
 

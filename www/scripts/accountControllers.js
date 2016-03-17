@@ -1,7 +1,8 @@
 angular.module('starter.controllers', [])
 
 
-myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExercises', '$firebaseAuth', 'FIREBASE_URL', function($scope, Authentication, sharedExercises, $firebaseAuth, FIREBASE_URL) {
+myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExercises', '$firebaseAuth', 'FIREBASE_URL', '$ionicPopup', '$timeout', 
+  function($scope, Authentication, sharedExercises, $firebaseAuth, FIREBASE_URL, $ionicPopup, $timeout) {
   $scope.firstname;
   $scope.lastname;
 
@@ -66,8 +67,70 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
 
   // add last Name function...
   $scope.updateEmail = function(oldEmail, newEmail, currentPassword) {
-    Authentication.changeEmail(oldEmail, newEmail, currentPassword);
+    $scope.newUserSettings = {};
+    var myPopup = $ionicPopup.show({
+        template: "<input class='inputIndent' placeholder='Old Email' type='text' ng-model='newUserSettings.oldEmail'><br><input type='password' class='inputIndent' placeholder='Current Password' ng-model='newUserSettings.currentPassword'><br><input type='text' class='inputIndent' placeholder='New Email' ng-model='newUserSettings.newEmail'>",
+        title: 'Confirm Email Change',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Submit</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if (!$scope.newUserSettings) {
+                e.preventDefault();
+              } else {
+                Authentication.changeEmail($scope.newUserSettings.oldEmail, $scope.newUserSettings.newEmail, $scope.newUserSettings.currentPassword);
+              }
+            }
+          }
+         ]
+        });
+
+        myPopup.then(function(res) {
+          console.log('Tapped!', res);
+        });
+
+        $timeout(function() {
+           myPopup.close(); 
+        }, 1200000);
+
   }
+
+  $scope.updatePassword = function(email, oldPassword, newPassword) {
+    $scope.newUserSettings = {};
+    var myPopup = $ionicPopup.show({
+        template: "<input class='inputIndent' placeholder='Email' type='text' ng-model='newUserSettings.email'><br><input type='password' class='inputIndent' placeholder='Old Password' ng-model='newUserSettings.oldPassword'><br><input type='password' class='inputIndent' placeholder='New Password' ng-model='newUserSettings.newPassword'>",
+        title: 'Confirm Password Change',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Submit</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if (!$scope.newUserSettings) {
+                e.preventDefault();
+              } else {
+                Authentication.changePassword($scope.newUserSettings.email, $scope.newUserSettings.oldPassword, $scope.newUserSettings.newPassword);
+              }
+            }
+          }
+         ]
+        });
+
+        myPopup.then(function(res) {
+          console.log('Tapped!', res);
+        });
+
+        $timeout(function() {
+           myPopup.close(); 
+        }, 1200000);
+
+  }
+
+
 
 }])
 

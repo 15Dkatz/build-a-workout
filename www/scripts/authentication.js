@@ -1,7 +1,6 @@
 myApp.factory('Authentication',
-  ['$rootScope', '$firebaseAuth', '$firebaseObject', '$location', '$window', 'FIREBASE_URL',
-  function($rootScope, $firebaseAuth, $firebaseObject,
-    $location, $window, FIREBASE_URL) {
+  ['$rootScope', '$firebaseAuth', '$firebaseObject', '$location', '$window', 'FIREBASE_URL', '$ionicPopup',
+  function($rootScope, $firebaseAuth, $firebaseObject, $location, $window, FIREBASE_URL, $ionicPopup) {
 
   var ref = new Firebase(FIREBASE_URL);
   var auth = $firebaseAuth(ref);
@@ -98,7 +97,23 @@ myApp.factory('Authentication',
           console.log("User email changed successfully!");
         }
       })
-  }
+    },
+
+    changePassword: function(email, oldPassword, newPassword) {
+      auth.$changePassword({
+        email       : email,
+        oldPassword : oldPassword,
+        newPassword : newPassword
+      }, function(error) {
+        if (error === null) {
+          console.log("Password changed successfully");
+        } else {
+          console.log("Error changing password:", error);
+        }
+      })
+    }
+
+
 
 
 
@@ -108,3 +123,5 @@ myApp.factory('Authentication',
   return myObject;
 
 }]); //factory
+
+// need to show invalid username and password combination

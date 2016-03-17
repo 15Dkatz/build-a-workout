@@ -217,16 +217,16 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
               }
             }
           }
-        ]
-      });
+         ]
+        });
 
-      myPopup.then(function(res) {
-        console.log('Tapped!', res);
-      });
+        myPopup.then(function(res) {
+          console.log('Tapped!', res);
+        });
 
-      $timeout(function() {
-         myPopup.close(); 
-      }, 10000);
+        $timeout(function() {
+           myPopup.close(); 
+        }, 10000);
 
     }
 
