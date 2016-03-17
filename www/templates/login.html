@@ -8,14 +8,14 @@
         <div class="list">
           <label class="item item-input item-floating-label">
             <input type="email" name="email" placeholder="Email"
-             ng-model="user.email" ng-required="true">
+             ng-model="user.email" ng-required="true" class="inputIndent">
             <p class=""
             ng-show="myform.email.$invalid && myform.email.$touched">
             Must be a valid email</p>
           </label>
           <label class="item item-input item-floating-label">
             <input type="password" name="password" placeholder="Password"
-            ng-model="user.password" ng-required="true">
+            ng-model="user.password" ng-required="true" class="inputIndent">
             <p class=""
             ng-show="myform.password.$invalid && myform.email.$touched">
             Password is required</p>
