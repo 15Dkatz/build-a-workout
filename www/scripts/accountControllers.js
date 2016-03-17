@@ -49,6 +49,10 @@ myApp.controller('AccountController', ['$scope', 'Authentication', 'sharedExerci
     sharedExercises.updateAccountEmail(newEmail);
   }
 
+  $scope.changeEmail = function(newEmail, password) {
+    console.log("attempting email change", "password:", password, "password.type:", typeof password);
+    Authentication.changeEmail(newEmail);
+  }
 
 }])
 

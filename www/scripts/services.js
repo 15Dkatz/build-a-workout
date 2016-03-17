@@ -7,6 +7,8 @@ myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth',
   var exerciseListRef, userRef;
   var firstname, lastname;
   var showLoginContent = true;
+  var exTime=0;
+
   auth.$onAuth(function(authUser) {
       if (authUser) {
         exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
@@ -55,12 +57,9 @@ myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth',
     getShowLoginContent: function() {
 	 	return showLoginContent;
 	},
-    // add setter methods for name
 
     setExerciseList: function(newList) {
       exerciseList = newList;
-      
-        // $scope.$apply(function() {
       exerciseListRef.update({"exerciseList": newList});
     },
 
@@ -74,6 +73,14 @@ myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth',
 
     updateAccountEmail: function(newEmail) {
     	userRef.update({"email": newEmail});
+    },
+
+    getExTime: function() {
+    	return exTime;
+    },
+
+    setExTime: function(newExtime) {
+    	exTime = newExtime;
     }
 
   }

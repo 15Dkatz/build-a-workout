@@ -10,8 +10,11 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
     $scope.currentExercise;
     $scope.exerciseList;
 
+    $scope.showStartButton = true;
+
     $scope.initExList = function() {
         exerciseList = sharedExercises.getExerciseList();
+        // $scope.showStartButton = sharedExercises.getStart
     }
 
     $scope.updateExerciseList = function() {
@@ -22,7 +25,6 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
                 exerciseTimeLimit = $scope.currentExercise["time"];
             }
         }
-        // timer = false;
         $scope.exerciseList = exerciseList;
         return exerciseList;
     }
@@ -77,8 +79,13 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
               if (!$scope.newExercise) {
                 e.preventDefault();
               } else {
-                $scope.exerciseList[index]["exercise"] = $scope.newExercise.exercise;
-                $scope.exerciseList[index]["time"] = $scope.newExercise.time;
+                if ($scope.newExercise.exercise) {
+                    $scope.exerciseList[index]["exercise"] = $scope.newExercise.exercise;
+                }
+                if ($scope.newExercise.time) {
+                    $scope.exerciseList[index]["time"] = $scope.newExercise.time;  
+                }
+                
                 sharedExercises.setExerciseList($scope.exerciseList);
                 updateExerciseVariables();
               }
@@ -100,17 +107,21 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
     var exTime = 0;
 
     var addTime = function() {
+        // exTime=sharedExercises.getExTime();
         exerciseTimeLimit = $scope.currentExercise["time"];
         // console.log($scope.currentExercise["currentTime"], "currentTime");
         exTime+=1;
+        // sharedExercises.setExTime(exTime);
+
         console.log("exTime", exTime)
         $scope.$apply(function() {
             updateExerciseVariables();
         });
 
         if (exTime>exerciseTimeLimit) {
-            removeCurrentTask($scope.currentExercise);
+            removeCurrentTask();
             exTime=0;
+            // sharedExercises.setExTime(exTime);
             // updateExerciseVariables();
         }
 
@@ -118,7 +129,17 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
             progressBarCircle.setText(exTime);
         });
 
+
+
     }
+
+    $scope.$on('builtNewSet', function(event, args) {
+        console.log("receiving builtNewSet broadcast");
+        progressBarCircle.animate(0, function() {
+            progressBarCircle.setText(0);
+        });
+        exTime=0;
+    });
 
     $scope.removeExercise = function(index) {
         $scope.exerciseList.splice(index, 1);
@@ -130,16 +151,26 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
         // exTime = $scope.currentExercise["time"];
     }
 
+    $scope.skipExercise = function() {
+        exTime=0;
+        sharedExercises.setExTime(exTime);
+        removeCurrentTask();
+    }
 
-    var removeCurrentTask = function(task) {
+
+    var removeCurrentTask = function() {
         $scope.exerciseList.shift();
         console.log($scope.exerciseList);
         sharedExercises.setExerciseList($scope.exerciseList);
         updateExerciseVariables(); 
     }
 
+
+
+
     $scope.startExercise = function() {
-        exerciseTimeLimit = $scope.currentExercise["time"];
+        // exerciseTimeLimit = $scope.currentExercise["time"];
+        $scope.showStartButton = false;
         if (!timer) {
             timer = setInterval(addTime, 1000);
         }
@@ -167,7 +198,6 @@ myApp.controller('WorkoutController', ['$scope', '$rootScope', 'Authentication',
     $scope.addExercise = function() {
         // popup template for new Exercise
         $scope.newExercise = {};
-        // update shared properties
         var myPopup = $ionicPopup.show({
         template: "<input class='inputIndent' placeholder='Name' type='text' ng-model='newExercise.exercise'><br><input type='number' class='inputIndent' placeholder='Time in seconds' ng-model='newExercise.time'>",
         title: 'New Exercise',

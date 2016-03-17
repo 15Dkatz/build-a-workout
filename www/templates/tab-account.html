@@ -35,16 +35,25 @@
 	  	<label class="item item-input item-stacked-label">
 	    	<span class="input-label">New Email</span>
 	    	<input type="text" placeholder="" ng-model="newEmail">
+	    	
+<!-- 	    	<span class="input-label">Password</span>
+	    	<input type="password" placeholder="" ng-model="password">
+	    	place on right
+	    	<button class="button button-block" ng-click="changeEmail(newEmail)">Change</button> -->
 	  	</label>
 	  	<div class="item">
 	  		<button class="button button-block" ng-disabled="myform.$invalid" ng-click="saveAccountChanges(newFirstname, newLastname, newEmail)">Save</button>
 	  	</div>
+
+<!-- 	  	<button class="button button-block" ng-click="changeEmail(newEmail, password)">Change</button> -->
 	  	<div class="item"></div>
 	  	<div class="item">
 	  		<button class="button button-block" ng-disabled="myform.$invalid" ng-click="logout()">Logout</button>
 	  	</div>
 	</div>
 	
+
+	<!-- fix! -->
 
 	<!-- <div class="bar bar-footer"> -->
     <!-- </div> -->

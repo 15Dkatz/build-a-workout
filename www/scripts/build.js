@@ -28,22 +28,27 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
     	var exerciseList = [];
 
     	for (c=0; c<numOfExercises; c++) {
-    		// picking a randomExercise from list
     		var randEx = randomExercises[Math.floor(Math.random()*randomExercises.length)];
     		var exercise = {
     			'time': timeForExercises,
-    			'exercise': randEx,
-                'currentTime': 0
+    			'exercise': randEx
     		}
     		exerciseList.push(exercise);
     	}
 
+        // make workout.js exTime=0;
         var combinedExerciseList = exerciseList.concat(sharedExercises.getExerciseList());
 
     	sharedExercises.setExerciseList(combinedExerciseList);
+        sharedExercises.setExTime(0);
+
+
+        $rootScope.$broadcast('builtNewSet');
+
 		$window.location.href = '#/tab/workout';
     }
 
 
+    // add createCustomSet functionality
 
 }]); // Controller
