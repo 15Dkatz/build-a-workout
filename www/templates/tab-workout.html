@@ -11,16 +11,17 @@
       <br> 
       <div class="row">
         <div id="progressBarCircle" class="col col-33 col-offset-33"></div>
+        <!-- fill background with grey or a picture -->
       </div>
     </div>
 
     <div class="row topButtons">
       <div class="col col-50">
-        <button class="button button-block icon-right ion-play button-outline button-dark topButtons" ng-click="startExercise()" ng-if="showStartButton">Start</button>
-        <button class="button button-block icon-right topButtons button-outline button-dark {{pauseBtn.ionname}}" ng-click="pauseExercise()" ng-if="!showStartButton">{{pauseBtn.name}}</button>
+        <button class="button button-block icon-right ion-play topButtons" ng-click="startExercise()" ng-if="showStartButton">Start</button>
+        <button class="button button-block icon-right topButtons {{pauseBtn.ionname}}" ng-click="pauseExercise()" ng-if="!showStartButton">{{pauseBtn.name}}</button>
       </div>
       <div class="col col-50">
-        <button class="button button-block button-outline button-dark icon-right ion-ios-skipforward topButtons" ng-click="skipExercise()">Skip</button>
+        <button class="button button-block icon-right ion-ios-skipforward topButtons" ng-click="skipExercise()">Skip</button>
       </div>
     </div>
     

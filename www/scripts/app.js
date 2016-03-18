@@ -28,6 +28,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
+    // controller: 'ApplicationController'
   })
 
   .state('tab.build', {
@@ -82,6 +83,8 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 // Todo:
 
 // change to black-and-orange, giants color-way theme for more intensity
+
+// <!-- fill background of progressBar in tab-workout.html with grey or a picture -->
 
 // add latency for offline capability to maintain exercises for user when they lose connection
 // <!-- CREATE CUSTOM LIST --> in build.html
