@@ -106,7 +106,7 @@ myApp.controller('BuildController', ['$scope', '$rootScope', 'Authentication', '
 
     $scope.addToCustomCat = function() {
         var newExercise = {
-            'time': 0,
+            'time': 'time:',
             'exercise': "exercise "+(customCategory.length+1),
         };
         customCategory.push(newExercise);

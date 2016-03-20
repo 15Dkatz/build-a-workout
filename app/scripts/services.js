@@ -1,50 +1,87 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+myApp.service('sharedExercises', ['FIREBASE_URL', '$rootScope', '$firebaseAuth', function(FIREBASE_URL, $rootScope, $firebaseAuth) {
+  var exerciseList = [];
+  var ref = new Firebase(FIREBASE_URL);
+  var auth = $firebaseAuth(ref);
+  var exerciseListRef, userRef;
+  var firstname, lastname;
+  var showLoginContent = true;
+  var exTime=0;
 
-  // Some fake testing data
-  // var chats = [{
-  //   id: 0,
-  //   name: 'Ben Sparrow',
-  //   lastText: 'You on your way?',
-  //   face: 'img/ben.png'
-  // }, {
-  //   id: 1,
-  //   name: 'Max Lynx',
-  //   lastText: 'Hey, it\'s me',
-  //   face: 'img/max.png'
-  // }, {
-  //   id: 2,
-  //   name: 'Adam Bradleyson',
-  //   lastText: 'I should buy a boat',
-  //   face: 'img/adam.jpg'
-  // }, {
-  //   id: 3,
-  //   name: 'Perry Governor',
-  //   lastText: 'Look at my mukluks!',
-  //   face: 'img/perry.png'
-  // }, {
-  //   id: 4,
-  //   name: 'Mike Harrington',
-  //   lastText: 'This is wicked good ice cream.',
-  //   face: 'img/mike.png'
-  // }];
+  auth.$onAuth(function(authUser) {
+      if (authUser) {
+        exerciseListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/exercises');
+        if (exerciseListRef) {
+          exerciseListRef.once("value", function(snapshot) {
+              if (snapshot.exists()) {
+                  exerciseList = snapshot.val()["exerciseList"];
+                  // userName = snapshot.val()[""]
+                  // console.log("exerciseList:", $scope.exerciseList);
+                  showLoginContent = false;
+              }
+          }, function(errorObject) {
+              console.log("The read failed: ", errorObject.code);
+          });
+        }
+        userRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id);
+       	if (userRef) {
+          userRef.once("value", function(snapshot) {
+              if (snapshot.exists()) {
+                  // exerciseList = snapshot.val()["exerciseList"];
+                  firstname = snapshot.val()["firstname"];
+                  lastname = snapshot.val()["lastname"];
+                  // console.log("exerciseList:", $scope.exerciseList);
+              }
+          }, function(errorObject) {
+              console.log("The read failed: ", errorObject.code);
+          });
+        }
+      }
+  })
 
-  // return {
-  //   all: function() {
-  //     return chats;
-  //   },
-  //   remove: function(chat) {
-  //     chats.splice(chats.indexOf(chat), 1);
-  //   },
-  //   get: function(chatId) {
-  //     for (var i = 0; i < chats.length; i++) {
-  //       if (chats[i].id === parseInt(chatId)) {
-  //         return chats[i];
-  //       }
-  //     }
-  //     return null;
-  //   }
-  // };
-});
+  return {
+    getExerciseList: function() {
+      
+      return exerciseList;
+    },
+
+    getFirstname: function() {
+    	return firstname;
+    },
+
+    getLastname: function() {
+    	return lastname;
+    },
+
+    getShowLoginContent: function() {
+	 	return showLoginContent;
+	},
+
+    setExerciseList: function(newList) {
+      exerciseList = newList;
+      exerciseListRef.update({"exerciseList": newList});
+    },
+
+    updateAccountFirstname: function(newFirstname) {
+    	userRef.update({"firstname": newFirstname});
+    },
+
+    updateAccountLastname: function(newLastname) {
+    	userRef.update({"lastname": newLastname});
+    },
+
+    updateAccountEmail: function(newEmail) {
+    	userRef.update({"email": newEmail});
+    },
+
+    getExTime: function() {
+    	return exTime;
+    },
+
+    setExTime: function(newExtime) {
+    	exTime = newExtime;
+    }
+
+  }
+}])

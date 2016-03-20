@@ -1,10 +1,9 @@
-@charset "UTF-8";
+/**
+ * import variables and mixins, so we can use them below
+ */
+@import '_variables.scss';
+@import '../bower_components/ionic/scss/_mixins.scss';
 
-@import "variables";
-
-@import "../bower_components/ionic/scss/ionic";
-
-@import "theme";
-
-@import "styles";
-
+.cards-bg {
+  background: $light;
+}

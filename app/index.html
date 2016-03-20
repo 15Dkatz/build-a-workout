@@ -7,14 +7,17 @@
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
+    <!-- <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css"/> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.
+    css"> -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'> -->
     <!-- endbower -->
     <!-- endbuild -->
-    <link href="styles/main.css" rel="stylesheet">
+    
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="styles/ionic.app.css" rel="stylesheet">
-    -->
+    <!-- compiled css output -->
+    <!-- <link href="styles/ionic.app.css" rel="stylesheet"> -->
+
 
     <!-- ionic/angularjs js -->
     <!-- build:js scripts/vendor.js -->
@@ -26,33 +29,45 @@
     <script src="bower_components/ionic/release/js/ionic.js"></script>
     <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
     <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+
+    <script src="scripts/resources/progressbar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>
+        
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- your app's js -->
+    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <!-- <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script> -->
+
+
+    <!-- <link href="styles/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="styles/main.scss" />
+
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers.js"></script>
+    <script src="scripts/application.js"></script>
+    <script src="scripts/registration.js"></script>
+    <script src="scripts/authentication.js"></script>
+    <script src="scripts/accountControllers.js"></script>
     <script src="scripts/services.js"></script>
     <script src="scripts/configuration.js"></script>
+    <script src="scripts/build.js"></script>
+    <script src="scripts/workout.js"></script>
     <!-- endbuild -->
   </head>
   <body ng-app="starter">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
       </ion-nav-back-button>
     </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
     <ion-nav-view></ion-nav-view>
   </body>
 </html>
+
+
+<!-- finish add customCategory function in build.html -->

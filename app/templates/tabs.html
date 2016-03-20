@@ -3,15 +3,17 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+<!-- <ion-side-menus> -->
+<!-- <ion-side-menu-content> -->
+<ion-tabs class="tabs-icon-top tabs-color-active-assertive">
 
   <!-- Dashboard Tab -->
-  <ion-tab title="Status" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/build">
+  <ion-tab title="Build" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/build">
     <ion-nav-view name="tab-build"></ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="Chats" icon-off="ion-ios-play-outline" icon-on="ion-ios-play" href="#/tab/workout ">
+  <ion-tab title="Workout" icon-off="ion-ios-play-outline" icon-on="ion-ios-play" href="#/tab/workout ">
     <ion-nav-view name="tab-workout"></ion-nav-view>
   </ion-tab>
 
@@ -21,4 +23,49 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
 
+
 </ion-tabs>
+
+
+    <!-- Left menu -->
+    <!-- <ion-side-menu side="left"> -->
+
+    <!-- </ion-side-menu> -->
+
+    <!-- <ion-side-menu-content> -->
+
+     <!-- Main content, usually <ion-nav-view> -->
+    <!--  <ion-list>
+            <ion-item menu-close href="#/app/search">
+              Search
+            </ion-item>
+            <ion-item menu-close href="#/app/browse">
+              Browse
+            </ion-item>
+            <ion-item menu-close href="#/app/playlists">
+              Playlists
+            </ion-item>
+          </ion-list> -->
+    
+    <!-- Right menu -->
+ <!--    <ion-side-menu side="right"
+             is-enabled="showAddMenu">
+    <ion-header-bar class="bar-stable">
+          <h1 class="title">Right</h1>
+        </ion-header-bar>
+        <ion-content>
+          <ion-list>
+            <ion-item menu-close href="#/app/search">
+              Search
+            </ion-item>
+            <ion-item menu-close href="#/app/browse">
+              Browse
+            </ion-item>
+            <ion-item menu-close href="#/app/playlists">
+              Playlists
+            </ion-item>
+          </ion-list>
+        </ion-content>
+    </ion-side-menu>
+    </ion-side-menu-content>
+  </ion-side-menus> -->
